@@ -168,7 +168,8 @@
             margin-bottom: 20px;
         }
 
-        .hero .cta-large {
+        /* CTAボタン（すべてのセクションで共通） */
+        .cta-large {
             display: inline-block;
             background-color: #007aff;
             color: white;
@@ -177,15 +178,18 @@
             text-decoration: none;
             font-size: 17px;
             font-weight: 400;
-            margin-top: 30px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
         }
 
-        .hero .cta-large:hover {
+        .cta-large:hover {
             background-color: #0051d5;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
+        }
+
+        .hero .cta-large {
+            margin-top: 30px;
         }
 
         .hero .usp {
@@ -923,22 +927,8 @@
         }
 
         .final-cta .cta-large {
-            display: inline-block;
-            background-color: #007aff;
-            color: white;
             padding: 18px 36px;
-            border-radius: 22px;
-            text-decoration: none;
             font-size: 19px;
-            font-weight: 400;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
-        }
-
-        .final-cta .cta-large:hover {
-            background-color: #0051d5;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
         }
 
         /* フッター */
