@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SendRight - 返信の正解を、10秒で得られる</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ヘッダー */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            z-index: 1000;
+            padding: 12px 0;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 22px;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #f5f5f7;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        /* ハンバーガーメニュー */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #f5f5f7;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .menu-toggle:focus {
+            outline: 2px solid #007aff;
+            outline-offset: 2px;
+        }
+
+        .nav-links a {
+            color: #f5f5f7;
+            text-decoration: none;
+            font-size: 12px;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .cta-button {
+            background-color: #007aff;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: #0051d5;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.4);
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            padding-top: 160px;
+            padding-bottom: 100px;
+            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 22px;
+            padding-right: 22px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 128px;
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            margin-bottom: 30px;
+            line-height: 1.05;
+            color: #ffffff;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 1200px;
+            height: 600px;
+            margin: 60px auto 0;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23000" width="1200" height="600"/><text x="50%25" y="50%25" font-family="system-ui" font-size="24" fill="%23fff" text-anchor="middle" dominant-baseline="middle">SendRight アプリのスクリーンショット</text></svg>') center/cover;
+            opacity: 0.3;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 24px;
+        }
+
+        .hero .subtitle {
+            font-size: 28px;
+            font-weight: 400;
+            color: #86868b;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .hero .price {
+            font-size: 21px;
+            color: #86868b;
+            margin-bottom: 20px;
+        }
+
+        .hero .cta-large {
+            display: inline-block;
+            background-color: #007aff;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 22px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 400;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
+        }
+
+        .hero .cta-large:hover {
+            background-color: #0051d5;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
+        }
+
+        .hero .usp {
+            font-size: 21px;
+            color: #86868b;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /* ストーリーセクション */
+        .story {
+            padding: 150px 22px;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .story::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .story h2 {
+            font-size: 64px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 100px;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .story-content {
+            font-size: 24px;
+            line-height: 1.8;
+            color: #ffffff;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .story-content p {
+            margin-bottom: 20px;
+        }
+
+        .story-content .emotion {
+            font-size: 36px;
+            font-weight: 600;
+            margin: 50px 0;
+            color: #ffffff;
+        }
+
+        .story-content .negative {
+            color: #86868b;
+            margin-top: 30px;
+        }
+
+        .story-content .positive {
+            color: #ffffff;
+            margin-top: 30px;
+        }
+
+        /* こんな人におすすめ */
+        .target-audience {
+            padding: 150px 22px;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .target-audience::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .target-audience h2 {
+            font-size: 64px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 100px;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .target-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 60px;
+        }
+
+        .target-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .target-item:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .target-item h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .target-item ul {
+            list-style: none;
+        }
+
+        .target-item ul li {
+            font-size: 19px;
+            color: #86868b;
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .target-item ul li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #86868b;
+            font-size: 24px;
+        }
+
+        /* ハイライトセクション */
+        .highlights {
+            padding: 150px 22px;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .highlights::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .highlights h2 {
+            font-size: 64px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 100px;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .highlight-item {
+            text-align: center;
+            padding: 30px;
+            border-radius: 18px;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .highlight-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: translateY(-4px);
+        }
+
+        .highlight-item h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .highlight-item p {
+            font-size: 17px;
+            color: #86868b;
+            line-height: 1.6;
+        }
+
+        /* 特典セクション */
+        .bonus {
+            padding: 150px 22px;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .bonus::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .bonus h2 {
+            font-size: 64px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 100px;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        /* ディテールセクション */
+        .details {
+            padding: 150px 22px;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .details h2 {
+            font-size: 64px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 100px;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .detail-section {
+            margin-bottom: 120px;
+            position: relative;
+        }
+
+        .detail-section-image {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            margin: 40px auto;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .detail-section-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><rect fill="%23000" width="800" height="400"/><text x="50%25" y="50%25" font-family="system-ui" font-size="20" fill="%23fff" text-anchor="middle" dominant-baseline="middle">画像プレースホルダー</text></svg>') center/cover;
+            opacity: 0.3;
+        }
+
+        .detail-section h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: -0.02em;
+        }
+
+        .detail-section p {
+            font-size: 19px;
+            color: #86868b;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .detail-section ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .detail-section ul li {
+            font-size: 19px;
+            color: #86868b;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .detail-section ul li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #86868b;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .number {
+            font-size: 64px;
+            font-weight: 600;
+            color: #f5f5f7;
+            margin-bottom: 10px;
+        }
+
+        .stat-item .label {
+            font-size: 19px;
+            color: #86868b;
+        }
+
+        /* メンバーの声 */
+        .testimonials {
+            padding: 150px 22px;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .testimonials h2 {
+            font-size: 64px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 100px;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .testimonial-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-item:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .testimonial-item h4 {
+            font-size: 21px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .testimonial-item .author {
+            font-size: 17px;
+            color: #86868b;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-item p {
+            font-size: 17px;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* 価格セクション */
+        .pricing {
+            padding: 150px 22px;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .pricing::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .pricing h2 {
+            font-size: 64px;
+            font-weight: 600;
+            margin-bottom: 100px;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .pricing-options {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .pricing-option {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            padding: 50px 40px;
+            border-radius: 18px;
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .pricing-option:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .pricing-option.recommended {
+            background-color: rgba(0, 122, 255, 0.1);
+            border: 2px solid rgba(0, 122, 255, 0.3);
+            position: relative;
+        }
+
+        .pricing-option.recommended::before {
+            content: 'おすすめ';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #007aff;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .pricing-option .price-label {
+            font-size: 17px;
+            color: #86868b;
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+
+        .pricing-option .price-amount {
+            font-size: 56px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .pricing-option .price-period {
+            font-size: 19px;
+            color: #86868b;
+            margin-bottom: 30px;
+        }
+
+        .pricing-option .price-savings {
+            font-size: 17px;
+            color: #86868b;
+            margin-bottom: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pricing-option .price-savings strong {
+            color: #007aff;
+        }
+
+        .pricing .price-large {
+            font-size: 72px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #ffffff;
+        }
+
+        .pricing .price-note {
+            font-size: 19px;
+            color: #86868b;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* 信頼性の向上（Appleスタイル） */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #86868b;
+            font-weight: 400;
+        }
+
+        .trust-badge-icon {
+            width: 6px;
+            height: 6px;
+            background-color: #86868b;
+            border-radius: 50%;
+        }
+
+        /* 緊急性・希少性のバッジ（Appleスタイル） */
+        .urgency-badge {
+            display: inline-block;
+            color: #86868b;
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            letter-spacing: 0.01em;
+        }
+
+        /* リスクリバーサル（Appleスタイル） */
+        .risk-reversal {
+            display: inline-block;
+            color: #86868b;
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            letter-spacing: 0.01em;
+        }
+
+        /* 社会的証明の強化 */
+        .social-proof-number {
+            font-size: 72px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        /* ベネフィットの具体化 */
+        .benefit-comparison {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 12px 0;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .benefit-before {
+            color: #86868b;
+            text-decoration: line-through;
+        }
+
+        .benefit-arrow {
+            color: #007aff;
+            font-size: 17px;
+        }
+
+        .benefit-after {
+            color: #34c759;
+        }
+
+        .pricing-plan-box {
+            margin-bottom: 40px;
+            padding: 40px;
+            background-color: rgba(0, 122, 255, 0.1);
+            border-radius: 24px;
+            border: 2px solid rgba(0, 122, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .pricing-plan-box:hover {
+            background-color: rgba(0, 122, 255, 0.15);
+            border-color: rgba(0, 122, 255, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 122, 255, 0.2);
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background-color: #007aff;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* FAQセクション */
+        .faq {
+            padding: 150px 22px;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .faq::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .faq h2 {
+            font-size: 64px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 100px;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .faq-item {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .faq-item p {
+            font-size: 19px;
+            color: #86868b;
+            line-height: 1.6;
+        }
+
+        /* CTAセクション */
+        .final-cta {
+            padding: 150px 22px;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .final-cta h2 {
+            font-size: 64px;
+            font-weight: 600;
+            margin-bottom: 60px;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .final-cta p {
+            font-size: 21px;
+            color: #86868b;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .final-cta .cta-large {
+            display: inline-block;
+            background-color: #007aff;
+            color: white;
+            padding: 18px 36px;
+            border-radius: 22px;
+            text-decoration: none;
+            font-size: 19px;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
+        }
+
+        .final-cta .cta-large:hover {
+            background-color: #0051d5;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
+        }
+
+        /* フッター */
+        footer {
+            padding: 40px 22px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: #86868b;
+            font-size: 12px;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 64px;
+            }
+
+            .hero .subtitle {
+                font-size: 21px;
+            }
+
+            .hero-image {
+                height: 300px;
+                margin-top: 40px;
+            }
+
+            .highlights h2,
+            .details h2,
+            .story h2,
+            .target-audience h2,
+            .testimonials h2,
+            .faq h2,
+            .final-cta h2,
+            .bonus h2 {
+                font-size: 40px;
+            }
+
+            .story-content {
+                font-size: 19px;
+            }
+
+            .story-content .emotion {
+                font-size: 24px;
+            }
+
+            .target-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .highlights-grid {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+            }
+
+            .detail-section-image {
+                height: 250px;
+            }
+
+            .pricing-options {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .pricing-option {
+                min-width: 100%;
+                max-width: 100%;
+                padding: 40px 30px;
+            }
+
+            .pricing-option .price-amount {
+                font-size: 48px;
+            }
+
+            .pricing h2 {
+                font-size: 40px;
+                margin-bottom: 60px;
+            }
+
+            .urgency-badge {
+                font-size: 13px;
+            }
+
+            .risk-reversal {
+                font-size: 13px;
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            .benefit-comparison {
+                font-size: 15px;
+                gap: 10px;
+            }
+
+            .social-proof-number {
+                font-size: 56px;
+            }
+
+            .trust-badges {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background-color: rgba(0, 0, 0, 0.95);
+                backdrop-filter: saturate(180%) blur(20px);
+                flex-direction: column;
+                padding: 40px 22px;
+                gap: 20px;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* スクロールアニメーション */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* パララックス効果 */
+        .parallax {
+            transition: transform 0.1s ease-out;
+        }
+
+        /* セクション間のフェード効果 */
+        section {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <nav>
+            <a href="#" class="logo" aria-label="SendRight ホーム">SendRight</a>
+            <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false">☰</button>
+            <ul class="nav-links">
+                <li><a href="#highlights" aria-label="特徴セクションへ移動">特徴</a></li>
+                <li><a href="#details" aria-label="詳細セクションへ移動">詳細</a></li>
+                <li><a href="#target" aria-label="こんな人におすすめセクションへ移動">こんな人におすすめ</a></li>
+                <li><a href="#pricing" aria-label="価格セクションへ移動">価格</a></li>
+                <li><a href="#bonus" aria-label="特典セクションへ移動">特典</a></li>
+                <li><a href="#faq" aria-label="よくある質問セクションへ移動">よくある質問</a></li>
+            </ul>
+            <a href="#pricing" class="cta-button" aria-label="7日間無料トライアルを開始">今すぐ無料で試す</a>
+        </nav>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <h1>SendRight</h1>
+        <p class="subtitle">返信の正解を、10秒で得られる。</p>
+        <p class="usp">プロの思考を学びながら、判断軸も理解できる唯一のサービス</p>
+        <p class="price">月額6,980円（税込）<br>年間払い59,800円=28.5%OFF</p>
+        <p class="price-note" style="margin-top: 20px; margin-bottom: 20px;">7日間無料トライアル。リスクゼロ。</p>
+        <a href="#pricing" class="cta-large" aria-label="7日間無料トライアルを開始">今すぐ7日間無料で試す</a>
+        <div class="hero-image parallax" role="img" aria-label="SendRightアプリのスクリーンショット">
+            <!-- 実際の画像を配置する場合は、以下のコメントを外してimgタグを使用 -->
+            <!-- <img src="path/to/hero-image.jpg" alt="SendRightアプリのスクリーンショット"> -->
+        </div>
+    </section>
+
+    <!-- ストーリーセクション -->
+    <section class="story fade-in">
+        <h2>現状維持に身を任せるのか、それとも行動を起こすのか</h2>
+        <div class="story-content">
+            <p>あなたが選ぶべき道は、今まさに目の前にあります。</p>
+            <p>スマホを開く。<br>マッチングアプリの通知を確認する。<br>気になる子からメッセージが来ている。<br>「よし、返信しよう」<br>でも、何を返せばいいのか分からない。</p>
+            <p>30分が過ぎる。<br>1時間が過ぎる。<br>結局、無難な文章を送る。<br>返事は来ない。</p>
+            <p>またスマホを開く。<br>通知を確認する。<br>何も来ていない。<br>「また失敗したのかな…」</p>
+            <p>この繰り返しが、何週間も、何ヶ月も続く。<br>気づけば、スマホを開いては閉じる、その繰り返し。<br>メッセージを送っても返事が返らない、その空白の時間。<br>「どこを変えればいいのか」「何を返せばいいのか」が分からないまま、不安だけが増えていく。</p>
+            <p class="emotion">その孤独感。<br>その焦燥感。<br>その絶望感。</p>
+            <p class="negative">このまま何もしなければ、<br>返信に悩む時間が増え続ける<br>理想の女性との距離が広がり続ける<br>マッチングアプリでの失敗が積み重なる<br>自信が失われていく</p>
+            <p class="positive">でも、もし返信の正解を得られ、プロの判断軸を学びながら分かるサービスがあるなら、理想の女性との距離は大幅に縮まります。</p>
+            <p>今この瞬間に行動を起こせば、<br>返信の悩みから解放される<br>理想の女性との距離が縮まる<br>成功体験が積み重なる<br>自信が取り戻せる</p>
+            <p>あなたが望む未来はすぐそこにあります。</p>
+        </div>
+        <div style="text-align: center; margin-top: 60px;">
+            <a href="#pricing" class="cta-large" aria-label="7日間無料トライアルを開始">今すぐ7日間無料で試す</a>
+            <p class="price-note" style="margin-top: 20px;">先着100名様限定。今すぐ登録すると、2つの特典がもらえます。</p>
+        </div>
+    </section>
+
+    <!-- ハイライトセクション -->
+    <section class="highlights" id="highlights">
+        <h2>まずは、特徴から。</h2>
+        <div class="highlights-grid">
+            <div class="highlight-item fade-in">
+                <h3>10秒で返信</h3>
+                <p>返信時間を数分〜数十分から、わずか10秒に短縮。<br>迷う時間がゼロになる。</p>
+            </div>
+            <div class="highlight-item fade-in">
+                <h3>プロの判断軸</h3>
+                <p>プロの思考を学びながら、<br>判断軸が分かる。</p>
+            </div>
+            <div class="highlight-item fade-in">
+                <h3>成功率3倍向上</h3>
+                <p>無難な返信から、相手の心を動かす返信へ。</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 60px;">
+            <a href="#pricing" class="cta-large" aria-label="7日間無料トライアルを開始">今すぐ7日間無料で試す</a>
+            <p class="price-note" style="margin-top: 20px;">先着100名様限定。今すぐ登録すると、2つの特典がもらえます。</p>
+        </div>
+    </section>
+
+    <!-- ディテールセクション -->
+    <section class="details" id="details">
+        <h2>詳しく見る。</h2>
+
+        <div class="detail-section fade-in">
+            <h3>返信時間の劇的な短縮</h3>
+            <p><strong>返信時間は。</strong>数分〜数十分から、わずか10秒に短縮します。<br>迷う時間がなくなります。すぐに返信できます。</p>
+        </div>
+
+        <div class="detail-section fade-in">
+            <h3>返信の成功率向上</h3>
+            <p><strong>成功率は。</strong>平均返信成功率が15%から45%に向上（3倍向上）します。<br>無難な返信から、相手の心を動かす返信へ変わります。</p>
+        </div>
+
+        <div class="detail-section fade-in">
+            <h3>判断力の自然な習得</h3>
+            <p><strong>判断力は。</strong>返信するたびに、なぜその返信が選ばれたのか理由が分かります。<br>使えば使うほど、自分でもプロのように判断できるようになります。<br>平均2週間で基礎的な判断力が身につきます。</p>
+        </div>
+
+        <div class="detail-section fade-in">
+            <h3>自信の回復</h3>
+            <p><strong>自信は。</strong>マッチングアプリなど女性関係の成功体験が積み重なります。<br>それで自信が取り戻せます。そして、理想の恋愛に大きく近づけます。</p>
+        </div>
+
+        <div class="detail-section fade-in">
+            <h3>使い方</h3>
+            <p><strong>使い方は。</strong>4ステップで完了します。</p>
+            <ul>
+                <li>相手のメッセージを入力します（テキスト入力、スクリーンショットアップロード、音声入力のいずれか）</li>
+                <li>プロの判断で最適な返信が1通提示されます</li>
+                <li>返信と一緒に表示される解説を確認して、プロの判断軸が分かります</li>
+                <li>返信をコピーして送信します</li>
+            </ul>
+            <p style="margin-top: 20px;"><strong>期間:</strong> いつでも利用可能（サブスクリプション）<br><strong>方法:</strong> ウェブアプリまたはスマホアプリから利用</p>
+            <div class="detail-section-image fade-in" role="img" aria-label="SendRightの使い方">
+                <!-- 実際の画像を配置する場合は、以下のコメントを外してimgタグを使用 -->
+                <!-- <img src="path/to/usage-screenshot.jpg" alt="SendRightの使い方"> -->
+            </div>
+        </div>
+
+        <div class="detail-section fade-in">
+            <h3>制作者の実績</h3>
+            <p><strong>制作者は。</strong>現役のトップナンパ師、ナンパ講師。</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="social-proof-number">100%</div>
+                    <div class="label">ナンパ成功率<br>（渋谷）</div>
+                </div>
+                <div class="stat-item">
+                    <div class="social-proof-number">200+</div>
+                    <div class="label">講習受講者数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="social-proof-number">70%+</div>
+                    <div class="label">3ヶ月以内に<br>彼女ができた割合</div>
+                </div>
+            </div>
+            <p style="margin-top: 40px;">そんな彼が限られたクライアントにのみ提供してきた「秘密のメッセージ術」を、<br>いつでも使えるように作られたのがSendRightです。</p>
+        </div>
+    </section>
+
+    <!-- こんな人におすすめ -->
+    <section class="target-audience" id="target">
+        <h2>こんな人におすすめ</h2>
+        <div class="target-grid">
+            <div class="target-item fade-in">
+                <h3>SendRightが向いている人</h3>
+                <ul>
+                    <li>メッセージの返信に悩む人</li>
+                    <li>返信に悩む時間を減らしたい人</li>
+                    <li>判断力を身につけながら、結果も出したい人</li>
+                    <li>プロの判断基準を学びたい人</li>
+                </ul>
+            </div>
+            <div class="target-item fade-in">
+                <h3>SendRightが向いていない人</h3>
+                <ul>
+                    <li>メッセージの返信に悩まない人</li>
+                    <li>返信に悩まない人</li>
+                    <li>判断力を学ぶことに興味がない人</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- メンバーの声 -->
+    <section class="testimonials">
+        <h2>メンバーの声</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-item fade-in">
+                <h4>「返信に悩む時間がなくなりました」</h4>
+                <p class="author">28歳・会社員・男性</p>
+                <p>「以前は、返信に30分以上かかっていました。SendRightを使うようになってから、10秒で返信できるようになりました。返信に悩む時間がなくなり、マッチングアプリでの成功体験が増えました。」</p>
+            </div>
+            <div class="testimonial-item fade-in">
+                <h4>「プロの判断軸が分かるようになりました」</h4>
+                <p class="author">30歳・会社員・男性</p>
+                <p>「なぜその返信が選ばれたのか理由が分かります。使えば使うほど、自分でもプロのように判断できるようになります。今では、SendRightを使わなくても、ある程度プロのように判断できるようになっています。」</p>
+            </div>
+            <div class="testimonial-item fade-in">
+                <h4>「自信が取り戻せました」</h4>
+                <p class="author">29歳・会社員・男性</p>
+                <p>「マッチングアプリでの失敗が続き、自信を失っていました。SendRightを使うようになってから、成功体験が積み重なり、自信が取り戻せました。理想の女性との関係を築けるようになりました。」</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 価格セクション -->
+    <section class="pricing" id="pricing">
+        <h2>価格</h2>
+        
+        <div class="pricing-options">
+            <!-- 月額プラン -->
+            <div class="pricing-option">
+                <div class="price-label">月額プラン</div>
+                <div class="price-amount">6,980円</div>
+                <div class="price-period">/月（税込）</div>
+                <div class="price-savings">1日あたり約233円</div>
+            </div>
+
+            <!-- 年間プラン -->
+            <div class="pricing-option recommended">
+                <div class="price-label">年間プラン</div>
+                <div class="price-amount">59,800円</div>
+                <div class="price-period">/年（税込）</div>
+                <div class="price-savings">
+                    <strong>28.5%OFF</strong><br>
+                    月額換算 約4,983円
+                </div>
+            </div>
+        </div>
+
+        <p class="price-note" style="margin-top: 40px; margin-bottom: 30px;">7日間の無料トライアル付き。登録時にクレジットカード情報の登録が必要です。7日間は課金されません。いつでもキャンセル可能。リスクゼロ。</p>
+        <a href="#pricing" class="cta-large" style="margin-top: 40px;" aria-label="7日間無料トライアルを開始">今すぐ7日間無料で試す</a>
+        
+        <!-- 信頼性バッジ -->
+        <div class="trust-badges">
+            <div class="trust-badge">
+                <div class="trust-badge-icon">•</div>
+                <span>SSL暗号化通信</span>
+            </div>
+            <div class="trust-badge">
+                <div class="trust-badge-icon">•</div>
+                <span>安全な決済システム</span>
+            </div>
+            <div class="trust-badge">
+                <div class="trust-badge-icon">•</div>
+                <span>個人情報保護</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特典セクション -->
+    <section class="bonus" id="bonus">
+        <h2>特典</h2>
+        <div class="detail-section fade-in">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <p class="price-note" style="margin-bottom: 20px;">先着100名様限定</p>
+                <h3 style="font-size: 28px; font-weight: 600; color: #ffffff;">今すぐ登録すると、2つの特典がもらえます</h3>
+            </div>
+            <ul>
+                <li><strong>東京のおすすめデート店と、東京以外でのお店の選び方</strong><br>デートの場所選びに悩まないためのガイドです。プロのナンパ師が実際に使っているお店の選び方を公開します。</li>
+                <li><strong>実際のデートの考え方ガイド</strong><br>実際に女性と会った時（対面時）に考えるべきポイントを押さえたデートガイドです。メッセージの次のステップである「デート」での成功をサポートします。</li>
+            </ul>
+            <p style="margin-top: 20px;"><strong>なぜ100名に限定するのか？</strong><br>特典の効果は圧倒的です。しかし、この戦略が広まると、競合に知られ、戦略の優位性が下がってしまいます。<br>そのため、初期メンバーは100名に限定しています。</p>
+        </div>
+
+        <!-- 年間プラン限定特典 -->
+        <div class="detail-section fade-in" style="margin-top: 80px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h3 style="font-size: 28px; font-weight: 600; color: #ffffff; margin-bottom: 30px;">年間プラン限定特典</h3>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; text-align: left; padding: 50px 40px; background-color: rgba(0, 122, 255, 0.05); border-radius: 18px; border: 1px solid rgba(0, 122, 255, 0.2);">
+                <ul style="list-style: none; padding: 0;">
+                    <li style="font-size: 19px; color: #f5f5f7; margin-bottom: 20px; padding-left: 30px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #007aff; font-size: 20px; font-weight: 600;">•</span>
+                        <strong>あなたオリジナルのモテるマッチングアプリのプロフィールの作り方</strong><br>
+                        <span style="color: #86868b; font-size: 17px;">講習で大人気だった門外不出の極秘資料。通常、この資料は有料講習（5万円以上）でのみ提供される極秘資料です。</span>
+                    </li>
+                    <li style="font-size: 19px; color: #f5f5f7; margin-bottom: 20px; padding-left: 30px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #007aff; font-size: 20px; font-weight: 600;">•</span>
+                        <strong>成功事例集（限定版）</strong><br>
+                        <span style="color: #86868b; font-size: 17px;">実際にSendRightを使って成功した事例をまとめた限定資料。実践的な成功パターンを学べます。</span>
+                    </li>
+                    <li style="font-size: 19px; color: #f5f5f7; margin-bottom: 20px; padding-left: 30px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #007aff; font-size: 20px; font-weight: 600;">•</span>
+                        <strong>プロの判断軸の詳細解説動画（限定公開）</strong><br>
+                        <span style="color: #86868b; font-size: 17px;">返信の判断軸を深く学べる限定動画コンテンツ。いつでも視聴可能です。</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQセクション -->
+    <section class="faq" id="faq">
+        <h2>よくある質問</h2>
+        <div class="faq-item fade-in">
+            <h3>Q1. AIは一般論ばかりなのでは？</h3>
+            <p>いいえ、そうではありません。SendRightは、相手のメッセージの内容、会話の流れ、相手の個性を分析して、その人に合わせた返信を生成します。一般論やテンプレートではなく、その場面に最適な返信を提示します。プロのナンパ師が実際に使っている判断基準に基づいているため、個性的で効果的な返信が可能です。すでに使っているユーザーからも「判断の軸が分かるようになりました」「マッチングアプリでの成功体験が増えました」という声をいただいています。</p>
+        </div>
+        <div class="faq-item fade-in">
+            <h3>Q2. AIだといいメッセージは出ないのでは？</h3>
+            <p>いいえ、出ます。SendRightは、ただのAIではなくナンパ成功率100%を達成したプロの判断基準を基にしています。講習受講者200人以上、そのうち70%以上が3ヶ月以内に彼女ができた実績があります。この実績を支えてきた「秘密のメッセージ術」をAIが再現しているため、効果的な返信が生成されます。実際に使っているユーザーからも「返信に悩む時間がなくなりました」「マッチングアプリでの成功体験が増えました」という声をいただいています。</p>
+        </div>
+        <div class="faq-item fade-in">
+            <h3>Q3. プロの正解って本当に信頼できるの？</h3>
+            <p>はい、信頼できます。SendRightは、実際のナンパ師・恋愛コーチの判断基準を分析・体系化しています。「どのメッセージが正解か」のプロの判断は、心理学や認知科学に基づくエビデンスと、多くの成功事例から導き出されました。そして何より、そのプロの判断の根拠を学ぶこともできます。</p>
+        </div>
+        <div class="faq-item fade-in">
+            <h3>Q4. 10秒で返信できるようになるの？</h3>
+            <p>はい、できます。相手のメッセージを入力すると、プロの判断で最適な返信が1通提示されます。迷う工程を排除し、送れる正解を先に提示するため、10秒で返信できます。スクリーンショットをアップロードすれば、自動的にメッセージが抽出され、会話の流れを考慮した返信が生成されます。</p>
+        </div>
+        <div class="faq-item fade-in">
+            <h3>Q5. 考え方が本当に身につくの？</h3>
+            <p>はい、身につきます。このサービスは理由を隠しません。返信と一緒に解説が表示されます。なぜその返信なのか。なぜ他の選択肢を選ばなかったのか。正解を送りながら、プロの判断軸を学びながら分かります。使えば使うほど、自分でもプロのように判断できるようになります。</p>
+        </div>
+        <div class="faq-item fade-in">
+            <h3>Q6. テンプレート的な返信になるのでは？</h3>
+            <p>いいえ、なりません。SendRightは、相手のメッセージの内容や会話の流れを分析し、その場面に最適な返信を生成します。テンプレートではなく、プロの判断基準に基づいた、その人に合わせた返信を提示します。会話の流れを考慮し、相手の個性や状況に応じた返信が生成されるため、自然で効果的な返信が可能です。</p>
+        </div>
+        <div class="faq-item fade-in">
+            <h3>Q7. 7日間の無料トライアルで本当に試せるの？</h3>
+            <p>はい、試せます。7日間の無料トライアル期間中は、一切課金されません。登録時にクレジットカード情報の登録が必要ですが、7日間は課金されません。気に入らなければ、いつでもキャンセルできます。</p>
+        </div>
+        <div class="faq-item fade-in">
+            <h3>Q8. 返金保証は本当にあるの？</h3>
+            <p>7日間の無料トライアル期間中であれば、いつでもキャンセルでき、課金されることはありません。登録時にクレジットカード情報の登録が必要ですが、7日間は一切課金されません。気に入らなければ、無料トライアル期間中にキャンセルすれば、リスクはゼロです。</p>
+        </div>
+    </section>
+
+    <!-- 最終CTA -->
+    <section class="final-cta">
+        <h2>今動くか、先延ばしか</h2>
+        <p>ここまで読んでくれたあなたには、2つの選択肢があります。</p>
+        <p style="margin-top: 20px;">今すぐSendRightを始めれば、返信に悩む時間がゼロになります。<br>理想の女性との距離が縮まります。<br>マッチングアプリでの成功体験が積み重なります。<br>自信が取り戻せます。</p>
+        <a href="#pricing" class="cta-large" aria-label="7日間無料トライアルを開始">今すぐ7日間無料で試す</a>
+        <p class="price-note" style="margin-top: 20px;">先着100名様限定。7日間無料トライアル。いつでもキャンセル可能。リスクゼロ。</p>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 22px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; text-align: left;">
+                <div>
+                    <h4 style="font-size: 14px; font-weight: 600; color: #f5f5f7; margin-bottom: 15px;">SendRight</h4>
+                    <p style="font-size: 12px; color: #86868b; line-height: 1.6;">返信の正解を、10秒で得られる。プロの思考を学びながら、判断軸も理解できる唯一のサービス。</p>
+                </div>
+                <div>
+                    <h4 style="font-size: 14px; font-weight: 600; color: #f5f5f7; margin-bottom: 15px;">サービス</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 10px;"><a href="#highlights" style="color: #86868b; text-decoration: none; font-size: 12px; transition: color 0.3s;" onmouseover="this.style.color='#f5f5f7'" onmouseout="this.style.color='#86868b'">特徴</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#details" style="color: #86868b; text-decoration: none; font-size: 12px; transition: color 0.3s;" onmouseover="this.style.color='#f5f5f7'" onmouseout="this.style.color='#86868b'">詳細</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#pricing" style="color: #86868b; text-decoration: none; font-size: 12px; transition: color 0.3s;" onmouseover="this.style.color='#f5f5f7'" onmouseout="this.style.color='#86868b'">価格</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#faq" style="color: #86868b; text-decoration: none; font-size: 12px; transition: color 0.3s;" onmouseover="this.style.color='#f5f5f7'" onmouseout="this.style.color='#86868b'">よくある質問</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size: 14px; font-weight: 600; color: #f5f5f7; margin-bottom: 15px;">法的事項</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 10px;"><a href="#" style="color: #86868b; text-decoration: none; font-size: 12px; transition: color 0.3s;" onmouseover="this.style.color='#f5f5f7'" onmouseout="this.style.color='#86868b'">利用規約</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#" style="color: #86868b; text-decoration: none; font-size: 12px; transition: color 0.3s;" onmouseover="this.style.color='#f5f5f7'" onmouseout="this.style.color='#86868b'">プライバシーポリシー</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#" style="color: #86868b; text-decoration: none; font-size: 12px; transition: color 0.3s;" onmouseover="this.style.color='#f5f5f7'" onmouseout="this.style.color='#86868b'">特定商取引法に基づく表記</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; text-align: center;">
+                <p style="font-size: 12px; color: #86868b; margin: 0;">Copyright © 2025 SendRight. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- スクロールアニメーション -->
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        /* ハンバーガーメニューの開閉 */
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', () => {
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
+                navLinks.classList.toggle('active');
+            });
+
+            // メニューリンクをクリックしたら閉じる
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+
+        /* パララックス効果 */
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax');
+            parallaxElements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const speed = 0.3;
+                const yPos = -(scrolled - rect.top) * speed;
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
+
