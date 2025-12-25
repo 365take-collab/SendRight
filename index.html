@@ -1146,6 +1146,19 @@
                 height: 450px !important;
                 min-height: 450px !important;
             }
+
+            .story h2 br,
+            .final-cta h2 br {
+                display: none;
+            }
+        }
+
+        /* PCでの見出し改行制御 */
+        @media (min-width: 769px) {
+            .story h2 br,
+            .final-cta h2 br {
+                display: inline;
+            }
         }
 
         /* スクロールアニメーション */
@@ -1205,7 +1218,7 @@
 
     <!-- ストーリーセクション -->
     <section class="story fade-in">
-        <h2>現状維持に身を任せるのか、それとも行動を起こすのか</h2>
+        <h2>現状維持に身を任せるのか、<br>それとも行動を起こすのか</h2>
         <div class="story-content">
             <p>こんな経験ありませんか？</p>
             <p>スマホを開く。<br>マッチングアプリの通知を確認する。<br>気になる子からメッセージが来ている。<br>「よし、返信しよう」<br>でも、何を返せばいいのか分からない。</p>
@@ -1509,7 +1522,7 @@
 
     <!-- 最終CTA -->
     <section class="final-cta">
-        <h2>今動くか、先延ばしか</h2>
+        <h2>今動くか、<br>先延ばしか</h2>
         <p>ここまで読んでくれたあなたには、2つの選択肢があります。</p>
         
         <div style="max-width: 800px; margin: 40px auto; text-align: left;">
