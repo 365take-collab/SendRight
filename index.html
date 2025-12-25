@@ -609,6 +609,64 @@
             line-height: 1.6;
         }
 
+        /* リスクリバーサルセクション */
+        .risk-reversal-section {
+            padding: 150px 22px;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .risk-reversal-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .risk-reversal-section h2 {
+            font-size: 64px;
+            font-weight: 600;
+            margin-bottom: 100px;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .guarantee-box {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            padding: 50px 40px;
+            background-color: rgba(0, 122, 255, 0.1);
+            border-radius: 24px;
+            border: 2px solid rgba(0, 122, 255, 0.3);
+            text-align: left;
+        }
+
+        .guarantee-box h3 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .guarantee-box p {
+            font-size: 19px;
+            color: #f5f5f7;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .guarantee-box p strong {
+            color: #007aff;
+            font-weight: 600;
+        }
+
         /* 価格セクション */
         .pricing {
             padding: 150px 22px;
@@ -1007,6 +1065,23 @@
                 margin-bottom: 60px;
             }
 
+            .risk-reversal-section h2 {
+                font-size: 40px;
+                margin-bottom: 60px;
+            }
+
+            .guarantee-box {
+                padding: 40px 30px;
+            }
+
+            .guarantee-box h3 {
+                font-size: 24px;
+            }
+
+            .guarantee-box p {
+                font-size: 17px;
+            }
+
             .urgency-badge {
                 font-size: 13px;
             }
@@ -1130,6 +1205,8 @@
             <p>またスマホを開く。<br>通知を確認する。<br>何も来ていない。<br>「また失敗したのかな…」</p>
             <p>この繰り返しが、何週間も、何ヶ月も続く。<br>気づけば、スマホを開いては閉じる、その繰り返し。<br>メッセージを送っても返事が返らない、その空白の時間。<br>「どこを変えればいいのか」「何を返せばいいのか」が分からないまま、不安だけが増えていく。</p>
             <p class="emotion">その孤独感。<br>その焦燥感。<br>その絶望感。</p>
+            <p>こんな経験ありませんか？<br>あなたも同じ悩みを抱えていませんか？</p>
+            <p>これまで試した解決策は、なぜうまくいかなかったのか。<br>本を読んでも、動画を見ても、セミナーに参加しても、<br>結局、返信に悩む時間は減らなかった。<br>なぜなら、その場面に最適な返信が分からなかったから。</p>
             <p class="negative">このまま何もしなければ、<br>返信に悩む時間が増え続ける<br>理想の女性との距離が広がり続ける<br>マッチングアプリでの失敗が積み重なる<br>自信が失われていく</p>
             <p class="positive">でも、もし返信の正解を得られ、プロの判断軸を学びながら分かるサービスがあるなら、理想の女性との距離は大幅に縮まります。</p>
             <p>今この瞬間に行動を起こせば、<br>返信の悩みから解放される<br>理想の女性との距離が縮まる<br>成功体験が積み重なる<br>自信が取り戻せる</p>
@@ -1141,9 +1218,12 @@
         </div>
     </section>
 
-    <!-- ハイライトセクション -->
+    <!-- ハイライトセクション（ソリューション提示） -->
     <section class="highlights" id="highlights">
         <h2>まずは、特徴から。</h2>
+        <div style="max-width: 800px; margin: 0 auto 60px; text-align: center;">
+            <p style="font-size: 24px; color: #f5f5f7; line-height: 1.6; margin-bottom: 40px;">プロの思考を学びながら、判断軸も理解できる唯一のサービス。</p>
+        </div>
         <div class="highlights-grid">
             <div class="highlight-item fade-in">
                 <h3>10秒で返信</h3>
@@ -1204,25 +1284,6 @@
             </div>
         </div>
 
-        <div class="detail-section fade-in">
-            <h3>制作者の実績</h3>
-            <p><strong>制作者は。</strong>現役のトップナンパ師、ナンパ講師。</p>
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="social-proof-number">100%</div>
-                    <div class="label">ナンパ成功率<br>（渋谷）</div>
-                </div>
-                <div class="stat-item">
-                    <div class="social-proof-number">200+</div>
-                    <div class="label">講習受講者数</div>
-                </div>
-                <div class="stat-item">
-                    <div class="social-proof-number">70%+</div>
-                    <div class="label">3ヶ月以内に<br>彼女ができた割合</div>
-                </div>
-            </div>
-            <p style="margin-top: 40px;">そんな彼が限られたクライアントにのみ提供してきた「秘密のメッセージ術」を、<br>いつでも使えるように作られたのがSendRightです。</p>
-        </div>
     </section>
 
     <!-- こんな人におすすめ -->
@@ -1249,6 +1310,29 @@
         </div>
     </section>
 
+    <!-- 制作者の実績（証拠・証言セクションの一部） -->
+    <section class="details" style="padding-top: 150px;">
+        <h2>制作者の実績</h2>
+        <div class="detail-section fade-in">
+            <p><strong>制作者は。</strong>現役のトップナンパ師、ナンパ講師。</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="social-proof-number">100%</div>
+                    <div class="label">ナンパ成功率<br>（渋谷）</div>
+                </div>
+                <div class="stat-item">
+                    <div class="social-proof-number">200+</div>
+                    <div class="label">講習受講者数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="social-proof-number">70%+</div>
+                    <div class="label">3ヶ月以内に<br>彼女ができた割合</div>
+                </div>
+            </div>
+            <p style="margin-top: 40px;">そんな彼が限られたクライアントにのみ提供してきた「秘密のメッセージ術」を、<br>いつでも使えるように作られたのがSendRightです。</p>
+        </div>
+    </section>
+
     <!-- メンバーの声 -->
     <section class="testimonials">
         <h2>メンバーの声</h2>
@@ -1268,6 +1352,39 @@
                 <p class="author">29歳・会社員・男性</p>
                 <p>「マッチングアプリでの失敗が続き、自信を失っていました。SendRightを使うようになってから、成功体験が積み重なり、自信が取り戻せました。理想の女性との関係を築けるようになりました。」</p>
             </div>
+        </div>
+    </section>
+
+    <!-- リスクリバーサルセクション -->
+    <section class="risk-reversal-section">
+        <h2>リスクゼロで始められます</h2>
+        
+        <div class="guarantee-box fade-in">
+            <h3>7日間無料トライアル</h3>
+            <p>7日間、すべての機能を無料でお試しいただけます。</p>
+            <p>登録時にクレジットカード情報の登録が必要ですが、7日間は一切課金されません。</p>
+            <p>気に入らなければ、いつでもキャンセルできます。</p>
+            <p><strong>無料トライアル期間中にキャンセルすれば、リスクはゼロです。</strong></p>
+        </div>
+        
+        <div class="trust-badges">
+            <div class="trust-badge">
+                <div class="trust-badge-icon">•</div>
+                <span>SSL暗号化通信</span>
+            </div>
+            <div class="trust-badge">
+                <div class="trust-badge-icon">•</div>
+                <span>安全な決済システム</span>
+            </div>
+            <div class="trust-badge">
+                <div class="trust-badge-icon">•</div>
+                <span>個人情報保護</span>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 60px;">
+            <a href="https://utage-system.com/p/eTgu7MzlKGhE" class="cta-large" aria-label="7日間無料トライアルを開始">今すぐ7日間無料で試す</a>
+            <p class="price-note" style="margin-top: 20px;">先着100名様限定。今すぐ登録すると、2つの特典がもらえます。</p>
         </div>
     </section>
 
@@ -1298,22 +1415,6 @@
 
         <p class="price-note" style="margin-top: 40px; margin-bottom: 30px;">7日間の無料トライアル付き。登録時にクレジットカード情報の登録が必要です。7日間は課金されません。いつでもキャンセル可能。リスクゼロ。</p>
         <a href="https://utage-system.com/p/eTgu7MzlKGhE" class="cta-large" style="margin-top: 40px;" aria-label="7日間無料トライアルを開始">今すぐ7日間無料で試す</a>
-        
-        <!-- 信頼性バッジ -->
-        <div class="trust-badges">
-            <div class="trust-badge">
-                <div class="trust-badge-icon">•</div>
-                <span>SSL暗号化通信</span>
-            </div>
-            <div class="trust-badge">
-                <div class="trust-badge-icon">•</div>
-                <span>安全な決済システム</span>
-            </div>
-            <div class="trust-badge">
-                <div class="trust-badge-icon">•</div>
-                <span>個人情報保護</span>
-            </div>
-        </div>
     </section>
 
     <!-- 特典セクション -->
