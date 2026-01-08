@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SendRight - 返信の正解を、10秒で</title>
+    <title>SendRight - マッチングアプリの返信をAIがサポート</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;900&display=swap" rel="stylesheet">
@@ -18,7 +18,6 @@
             --color-text: #ffffff;
             --color-text-muted: #86868b;
             --color-border: rgba(255, 255, 255, 0.1);
-            --color-urgency: #FF3B30;
         }
 
         * {
@@ -36,48 +35,15 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 緊急性バー */
-        .urgency-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(90deg, var(--color-urgency) 0%, #FF6B35 100%);
-            color: white;
-            text-align: center;
-            padding: 10px 20px;
-            font-size: 14px;
-            font-weight: 600;
-            z-index: 1100;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .urgency-bar .countdown {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .urgency-bar .countdown-item {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            font-weight: 700;
-        }
-
         /* ヘッダー */
         header {
             position: fixed;
-            top: 42px;
+            top: 0;
             width: 100%;
             background-color: rgba(0, 0, 0, 0.9);
             backdrop-filter: saturate(180%) blur(20px);
             z-index: 1000;
-            padding: 12px 0;
+            padding: 15px 0;
             border-bottom: 1px solid var(--color-border);
         }
 
@@ -140,7 +106,6 @@
         .cta-button:hover {
             background-color: var(--color-primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 214, 10, 0.4);
         }
 
         /* CTAボタン（大） */
@@ -160,13 +125,12 @@
         .cta-large:hover {
             background-color: var(--color-primary-dark);
             transform: translateY(-3px);
-            box-shadow: 0 10px 35px rgba(255, 214, 10, 0.5);
         }
 
         /* ヒーローセクション */
         .hero {
-            padding-top: 180px;
-            padding-bottom: 60px;
+            padding-top: 140px;
+            padding-bottom: 80px;
             text-align: center;
             max-width: 1200px;
             margin: 0 auto;
@@ -187,11 +151,11 @@
         }
 
         .hero h1 {
-            font-size: 72px;
+            font-size: 56px;
             font-weight: 900;
             letter-spacing: -0.04em;
             margin-bottom: 24px;
-            line-height: 1.1;
+            line-height: 1.2;
             background: linear-gradient(135deg, #ffffff 0%, var(--color-primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -199,11 +163,11 @@
         }
 
         .hero .subtitle {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 400;
             color: var(--color-text-muted);
             margin-bottom: 40px;
-            line-height: 1.6;
+            line-height: 1.7;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -226,109 +190,35 @@
             margin-top: 20px;
         }
 
-        /* 社会的証明バー */
-        .social-proof-bar {
-            background: linear-gradient(90deg, rgba(75, 0, 130, 0.2) 0%, rgba(107, 35, 142, 0.2) 100%);
-            border-top: 1px solid var(--color-border);
-            border-bottom: 1px solid var(--color-border);
-            padding: 30px 22px;
-            margin-top: 60px;
-        }
-
-        .social-proof-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-
-        .social-proof-item {
-            text-align: center;
-        }
-
-        .social-proof-number {
-            font-size: 48px;
-            font-weight: 900;
-            color: var(--color-primary);
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .social-proof-label {
-            font-size: 14px;
-            color: var(--color-text-muted);
-            font-weight: 600;
-        }
-
         /* セクション共通 */
         section {
-            padding: 120px 22px;
+            padding: 100px 22px;
             max-width: 1200px;
             margin: 0 auto;
             border-top: 1px solid var(--color-border);
         }
 
         section h2 {
-            font-size: 48px;
+            font-size: 40px;
             font-weight: 900;
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             letter-spacing: -0.03em;
         }
 
-        /* 問題提起セクション */
-        .problem-section {
+        /* 特徴セクション */
+        .features-section {
             text-align: center;
         }
 
-        .problem-list {
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .problem-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 24px;
-            padding: 20px;
-            background: var(--color-bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--color-border);
-        }
-
-        .problem-icon {
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-
-        .problem-text {
-            font-size: 17px;
-            color: var(--color-text-muted);
-            line-height: 1.6;
-        }
-
-        .problem-text strong {
-            color: var(--color-text);
-        }
-
-        /* ソリューションセクション */
-        .solution-section h2 {
-            color: var(--color-primary);
-        }
-
-        .solution-grid {
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
-        .solution-item {
+        .feature-item {
             text-align: center;
             padding: 40px 30px;
             background: var(--color-bg-card);
@@ -337,111 +227,35 @@
             transition: all 0.3s ease;
         }
 
-        .solution-item:hover {
+        .feature-item:hover {
             transform: translateY(-5px);
             border-color: var(--color-primary);
-            box-shadow: 0 10px 40px rgba(255, 214, 10, 0.1);
         }
 
-        .solution-icon {
+        .feature-icon {
             font-size: 48px;
             margin-bottom: 20px;
         }
 
-        .solution-item h3 {
-            font-size: 24px;
+        .feature-item h3 {
+            font-size: 22px;
             font-weight: 900;
             margin-bottom: 15px;
             color: var(--color-text);
         }
 
-        .solution-item p {
+        .feature-item p {
             font-size: 15px;
             color: var(--color-text-muted);
             line-height: 1.6;
         }
 
-        /* 比較セクション */
-        .comparison-section {
+        /* 使い方セクション */
+        .how-it-works {
             text-align: center;
         }
 
-        .comparison-table {
-            max-width: 900px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .comparison-column {
-            padding: 40px;
-            border-radius: 16px;
-            text-align: left;
-        }
-
-        .comparison-column.before {
-            background: rgba(134, 134, 139, 0.1);
-            border: 1px solid rgba(134, 134, 139, 0.3);
-        }
-
-        .comparison-column.after {
-            background: rgba(255, 214, 10, 0.1);
-            border: 2px solid var(--color-primary);
-        }
-
-        .comparison-column h3 {
-            font-size: 20px;
-            font-weight: 900;
-            margin-bottom: 25px;
-        }
-
-        .comparison-column.before h3 {
-            color: var(--color-text-muted);
-        }
-
-        .comparison-column.after h3 {
-            color: var(--color-primary);
-        }
-
-        .comparison-column ul {
-            list-style: none;
-        }
-
-        .comparison-column ul li {
-            font-size: 16px;
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
-            line-height: 1.5;
-        }
-
-        .comparison-column.before ul li {
-            color: var(--color-text-muted);
-        }
-
-        .comparison-column.before ul li::before {
-            content: "×";
-            position: absolute;
-            left: 0;
-            color: var(--color-text-muted);
-            font-weight: 700;
-        }
-
-        .comparison-column.after ul li {
-            color: var(--color-text);
-        }
-
-        .comparison-column.after ul li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--color-primary);
-            font-weight: 700;
-        }
-
-        /* 実績セクション */
-        .stats-grid {
+        .steps-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
@@ -449,29 +263,72 @@
             margin: 0 auto;
         }
 
-        .stat-item {
+        .step-item {
             text-align: center;
-            padding: 40px;
+            padding: 30px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--color-primary);
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 900;
+            margin: 0 auto 20px;
+        }
+
+        .step-item h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--color-text);
+        }
+
+        .step-item p {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        /* こんな方に */
+        .target-section {
+            text-align: center;
+        }
+
+        .target-list {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .target-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 20px;
             background: var(--color-bg-card);
-            border-radius: 16px;
+            border-radius: 12px;
             border: 1px solid var(--color-border);
         }
 
-        .stat-number {
-            font-size: 56px;
-            font-weight: 900;
-            color: var(--color-primary);
-            line-height: 1;
-            margin-bottom: 10px;
+        .target-icon {
+            font-size: 24px;
+            flex-shrink: 0;
         }
 
-        .stat-label {
-            font-size: 15px;
-            color: var(--color-text-muted);
-            font-weight: 600;
+        .target-text {
+            font-size: 16px;
+            color: var(--color-text);
+            line-height: 1.6;
         }
 
-        /* テスティモニアル */
+        /* 利用者の声 */
         .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -479,29 +336,36 @@
         }
 
         .testimonial-item {
-            padding: 35px;
+            padding: 30px;
             background: var(--color-bg-card);
             border-radius: 16px;
             border: 1px solid var(--color-border);
         }
 
         .testimonial-item h4 {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: var(--color-primary);
         }
 
         .testimonial-author {
             font-size: 13px;
             color: var(--color-text-muted);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .testimonial-item p {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--color-text);
             line-height: 1.7;
+        }
+
+        .testimonial-note {
+            text-align: center;
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-top: 30px;
         }
 
         /* 価格セクション */
@@ -513,14 +377,14 @@
             display: flex;
             justify-content: center;
             gap: 30px;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
         }
 
         .pricing-option {
             flex: 1;
             min-width: 280px;
-            max-width: 400px;
+            max-width: 380px;
             padding: 40px;
             border-radius: 16px;
             background: var(--color-bg-card);
@@ -560,14 +424,14 @@
         }
 
         .pricing-amount {
-            font-size: 48px;
+            font-size: 42px;
             font-weight: 900;
             color: var(--color-text);
             margin-bottom: 8px;
         }
 
         .pricing-period {
-            font-size: 16px;
+            font-size: 15px;
             color: var(--color-text-muted);
             margin-bottom: 20px;
         }
@@ -579,99 +443,55 @@
         }
 
         .pricing-note {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--color-text-muted);
             margin-bottom: 30px;
             line-height: 1.6;
         }
 
-        .pricing-note strong {
-            color: var(--color-text);
-        }
-
         /* 保証セクション */
         .guarantee-box {
-            max-width: 800px;
-            margin: 0 auto 60px;
-            padding: 50px;
-            background: linear-gradient(135deg, rgba(75, 0, 130, 0.15) 0%, rgba(107, 35, 142, 0.15) 100%);
-            border-radius: 20px;
-            border: 2px solid var(--color-accent);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(75, 0, 130, 0.1) 0%, rgba(107, 35, 142, 0.1) 100%);
+            border-radius: 16px;
+            border: 1px solid var(--color-accent);
             text-align: center;
         }
 
         .guarantee-box h3 {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 900;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: var(--color-text);
         }
 
         .guarantee-box p {
-            font-size: 16px;
+            font-size: 15px;
             color: var(--color-text-muted);
-            line-height: 1.8;
-        }
-
-        /* 特典セクション */
-        .bonus-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .bonus-item {
-            padding: 35px;
-            background: var(--color-bg-card);
-            border-radius: 16px;
-            border: 1px solid var(--color-border);
-        }
-
-        .bonus-badge {
-            display: inline-block;
-            background: var(--color-primary);
-            color: #000;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .bonus-item h4 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--color-text);
-        }
-
-        .bonus-item p {
-            font-size: 14px;
-            color: var(--color-text-muted);
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         /* FAQ */
         .faq-item {
-            max-width: 800px;
-            margin: 0 auto 30px;
-            padding: 30px;
+            max-width: 700px;
+            margin: 0 auto 25px;
+            padding: 25px;
             background: var(--color-bg-card);
             border-radius: 12px;
             border: 1px solid var(--color-border);
         }
 
         .faq-item h3 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             color: var(--color-text);
         }
 
         .faq-item p {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--color-text-muted);
             line-height: 1.7;
         }
@@ -679,33 +499,26 @@
         /* 最終CTA */
         .final-cta {
             text-align: center;
-            padding: 150px 22px;
+            padding: 120px 22px;
         }
 
         .final-cta h2 {
-            font-size: 56px;
-            margin-bottom: 30px;
+            font-size: 40px;
+            margin-bottom: 20px;
         }
 
         .final-cta p {
-            font-size: 18px;
+            font-size: 16px;
             color: var(--color-text-muted);
-            margin-bottom: 40px;
-            max-width: 600px;
+            margin-bottom: 30px;
+            max-width: 500px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .final-cta .remaining {
-            color: var(--color-urgency);
-            font-weight: 700;
-            font-size: 16px;
-            margin-top: 20px;
-        }
-
         /* フッター */
         footer {
-            padding: 60px 22px;
+            padding: 50px 22px;
             border-top: 1px solid var(--color-border);
             text-align: center;
         }
@@ -714,7 +527,7 @@
             display: flex;
             justify-content: center;
             gap: 30px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             flex-wrap: wrap;
         }
 
@@ -736,23 +549,8 @@
 
         /* レスポンシブ */
         @media (max-width: 768px) {
-            .urgency-bar {
-                font-size: 12px;
-                padding: 8px 15px;
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            header {
-                top: 70px;
-            }
-
-            .hero {
-                padding-top: 160px;
-            }
-
             .hero h1 {
-                font-size: 40px;
+                font-size: 36px;
             }
 
             .hero .subtitle {
@@ -761,7 +559,7 @@
 
             .nav-links {
                 position: fixed;
-                top: 112px;
+                top: 70px;
                 left: 0;
                 right: 0;
                 background-color: rgba(0, 0, 0, 0.95);
@@ -779,30 +577,16 @@
                 display: block;
             }
 
-            .social-proof-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .social-proof-number {
-                font-size: 36px;
-            }
-
             section h2 {
-                font-size: 32px;
+                font-size: 28px;
             }
 
-            .solution-grid,
-            .stats-grid {
+            .features-grid,
+            .steps-grid {
                 grid-template-columns: 1fr;
             }
 
-            .comparison-table {
-                grid-template-columns: 1fr;
-            }
-
-            .testimonial-grid,
-            .bonus-grid {
+            .testimonial-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -816,15 +600,15 @@
             }
 
             .final-cta h2 {
-                font-size: 36px;
+                font-size: 28px;
             }
         }
 
         /* アニメーション */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         .fade-in.visible {
@@ -834,26 +618,14 @@
     </style>
 </head>
 <body>
-    <!-- 緊急性バー -->
-    <div class="urgency-bar">
-        <span>🔥 先着100名様限定｜残り<span id="remaining-spots">73</span>名</span>
-        <div class="countdown">
-            <span>特別価格終了まで</span>
-            <span class="countdown-item" id="countdown-hours">23</span>:
-            <span class="countdown-item" id="countdown-minutes">59</span>:
-            <span class="countdown-item" id="countdown-seconds">59</span>
-        </div>
-    </div>
-
     <!-- ヘッダー -->
     <header>
         <nav>
             <a href="#" class="logo">SendRight</a>
             <button class="menu-toggle" aria-label="メニュー">☰</button>
             <ul class="nav-links">
-                <li><a href="#solution">特徴</a></li>
-                <li><a href="#pricing">価格</a></li>
-                <li><a href="#testimonials">利用者の声</a></li>
+                <li><a href="#features">特徴</a></li>
+                <li><a href="#pricing">料金</a></li>
                 <li><a href="#faq">よくある質問</a></li>
             </ul>
             <a href="https://utage-system.com/p/eTgu7MzlKGhE" class="cta-button">無料で試す</a>
@@ -863,206 +635,142 @@
     <!-- ヒーローセクション -->
     <section class="hero">
         <span class="hero-badge">マッチングアプリ専用</span>
-        <h1>返信の正解を、10秒で</h1>
-        <p class="subtitle">プロの判断で最適な返信を3つ提案。<br>各候補に解説付きで、返信成功率が3倍に。</p>
-        <p class="price-info">月額<strong>6,980円</strong>（税込）｜年間払いなら<strong>28.5%OFF</strong></p>
-        <a href="https://utage-system.com/p/eTgu7MzlKGhE" class="cta-large">今すぐ7日間無料で試す</a>
-        <p class="trial-note">※登録時にクレジットカード情報が必要です。7日間は課金されません。いつでもキャンセル可能。</p>
+        <h1>返信に悩む時間を減らす<br>AIメッセージアシスタント</h1>
+        <p class="subtitle">マッチングアプリでの返信をAIがサポート。<br>3つの返信候補と、それぞれの解説を提供します。</p>
+        <p class="price-info">月額<strong>6,980円</strong>（税込）から</p>
+        <a href="https://utage-system.com/p/eTgu7MzlKGhE" class="cta-large">7日間無料で試す</a>
+        <p class="trial-note">※7日間の無料トライアル付き。トライアル中のキャンセルは無料です。</p>
     </section>
 
-    <!-- 社会的証明バー -->
-    <div class="social-proof-bar">
-        <div class="social-proof-container">
-            <div class="social-proof-item">
-                <div class="social-proof-number">10秒</div>
-                <div class="social-proof-label">返信時間</div>
+    <!-- 特徴セクション -->
+    <section class="features-section fade-in" id="features">
+        <h2>SendRightの特徴</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">💬</div>
+                <h3>3つの返信候補</h3>
+                <p>AIが状況に合わせた返信を3つ提案。選択肢があるから、自分に合った返信が見つかります。</p>
             </div>
-            <div class="social-proof-item">
-                <div class="social-proof-number">3倍</div>
-                <div class="social-proof-label">返信成功率</div>
+            <div class="feature-item">
+                <div class="feature-icon">📝</div>
+                <h3>解説付き</h3>
+                <p>なぜその返信が適切なのか、解説も一緒に表示。メッセージのコツが学べます。</p>
             </div>
-            <div class="social-proof-item">
-                <div class="social-proof-number">200+</div>
-                <div class="social-proof-label">利用者数</div>
-            </div>
-            <div class="social-proof-item">
-                <div class="social-proof-number">100%</div>
-                <div class="social-proof-label">制作者のナンパ成功率</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 問題提起セクション -->
-    <section class="problem-section fade-in">
-        <h2>こんな悩み、ありませんか？</h2>
-        <div class="problem-list">
-            <div class="problem-item">
-                <span class="problem-icon">😰</span>
-                <p class="problem-text"><strong>返信に30分以上</strong>かかる。何を送ればいいか分からず、結局無難な返信を送ってしまう。</p>
-            </div>
-            <div class="problem-item">
-                <span class="problem-icon">😞</span>
-                <p class="problem-text"><strong>返信が来ない</strong>。送った後に「あの返信で良かったのか...」と不安になる。</p>
-            </div>
-            <div class="problem-item">
-                <span class="problem-icon">😔</span>
-                <p class="problem-text"><strong>自信がなくなる</strong>。失敗が続くと、マッチングアプリを開くのが億劫になる。</p>
-            </div>
-            <div class="problem-item">
-                <span class="problem-icon">🤔</span>
-                <p class="problem-text"><strong>正解が分からない</strong>。何が良くて何が悪いのか、判断基準が分からない。</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ソリューションセクション -->
-    <section class="solution-section fade-in" id="solution">
-        <h2>SendRightが解決します</h2>
-        <div class="solution-grid">
-            <div class="solution-item">
-                <div class="solution-icon">⚡</div>
-                <h3>10秒で返信</h3>
-                <p>プロの判断で最適な返信を3つ提案。各候補に解説付き。</p>
-            </div>
-            <div class="solution-item">
-                <div class="solution-icon">🎯</div>
-                <h3>返信成功率3倍</h3>
-                <p>無難な返信から、相手の心を動かす返信へ。</p>
-            </div>
-            <div class="solution-item">
-                <div class="solution-icon">📚</div>
-                <h3>判断軸が身につく</h3>
-                <p>なぜその返信なのか、理由も一緒に学べる。</p>
+            <div class="feature-item">
+                <div class="feature-icon">📱</div>
+                <h3>使いやすい</h3>
+                <p>スクリーンショットをアップロードするだけ。会話の流れを考慮した返信を生成します。</p>
             </div>
         </div>
         <div style="text-align: center;">
-            <a href="https://utage-system.com/p/eTgu7MzlKGhE" class="cta-large">今すぐ7日間無料で試す</a>
+            <a href="https://utage-system.com/p/eTgu7MzlKGhE" class="cta-large">7日間無料で試す</a>
         </div>
     </section>
 
-    <!-- 比較セクション -->
-    <section class="comparison-section fade-in">
-        <h2>SendRightを使うと、こう変わる</h2>
-        <div class="comparison-table">
-            <div class="comparison-column before">
-                <h3>今まで</h3>
-                <ul>
-                    <li>返信に30分以上かかる</li>
-                    <li>何を送ればいいか分からない</li>
-                    <li>返信成功率15%</li>
-                    <li>失敗が続いて自信がなくなる</li>
-                    <li>判断基準が分からない</li>
-                </ul>
+    <!-- 使い方セクション -->
+    <section class="how-it-works fade-in">
+        <h2>使い方は簡単</h2>
+        <div class="steps-grid">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <h3>メッセージを入力</h3>
+                <p>相手のメッセージをテキストで入力、またはスクリーンショットをアップロード</p>
             </div>
-            <div class="comparison-column after">
-                <h3>SendRight使用後</h3>
-                <ul>
-                    <li>返信時間わずか10秒</li>
-                    <li>プロの判断で最適な返信を3つ提案</li>
-                    <li>返信成功率45%（3倍）</li>
-                    <li>成功体験が積み重なり自信UP</li>
-                    <li>プロの判断軸が身につく</li>
-                </ul>
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <h3>返信候補を確認</h3>
+                <p>AIが3つの返信候補を生成。それぞれに解説が付いています</p>
+            </div>
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <h3>コピーして送信</h3>
+                <p>気に入った返信をコピーして、そのまま送信できます</p>
             </div>
         </div>
     </section>
 
-    <!-- 実績セクション -->
-    <section class="fade-in">
-        <h2>制作者の実績</h2>
-        <p style="text-align: center; color: var(--color-text-muted); margin-bottom: 50px; font-size: 16px;">現役トップナンパ師・ナンパ講師が開発</p>
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">渋谷でのナンパ成功率</div>
+    <!-- こんな方に -->
+    <section class="target-section fade-in">
+        <h2>こんな方におすすめ</h2>
+        <div class="target-list">
+            <div class="target-item">
+                <span class="target-icon">✓</span>
+                <p class="target-text">マッチングアプリで何を返信すればいいか悩むことがある方</p>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">200+</div>
-                <div class="stat-label">講習受講者数</div>
+            <div class="target-item">
+                <span class="target-icon">✓</span>
+                <p class="target-text">返信を考える時間を減らしたい方</p>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">70%</div>
-                <div class="stat-label">3ヶ月以内に彼女ができた割合</div>
+            <div class="target-item">
+                <span class="target-icon">✓</span>
+                <p class="target-text">メッセージのやり取りをもっとスムーズにしたい方</p>
+            </div>
+            <div class="target-item">
+                <span class="target-icon">✓</span>
+                <p class="target-text">効果的なメッセージの書き方を学びたい方</p>
             </div>
         </div>
     </section>
 
-    <!-- テスティモニアル -->
+    <!-- 利用者の声 -->
     <section class="fade-in" id="testimonials">
-        <h2>利用者の声</h2>
+        <h2>ご利用者の声</h2>
         <div class="testimonial-grid">
             <div class="testimonial-item">
-                <h4>「30分→10秒に」</h4>
-                <p class="testimonial-author">28歳・会社員・利用3ヶ月</p>
-                <p>以前は返信に30分以上かかっていましたが、今は10秒で完了。3ヶ月で5人の女性とデートに発展しました。</p>
+                <h4>「返信を考える時間が減りました」</h4>
+                <p class="testimonial-author">20代・会社員</p>
+                <p>以前は返信を考えるのに時間がかかっていましたが、SendRightを使い始めてから、返信がスムーズになりました。解説も参考になります。</p>
             </div>
             <div class="testimonial-item">
-                <h4>「返信成功率が3倍に」</h4>
-                <p class="testimonial-author">27歳・会社員・利用2ヶ月</p>
-                <p>返信成功率が15%→45%に。無難な返信から、相手の心を動かす返信に変わりました。</p>
+                <h4>「メッセージのコツが分かるように」</h4>
+                <p class="testimonial-author">30代・会社員</p>
+                <p>解説を読むことで、どういう返信が良いのか分かるようになってきました。自分でも考えられるようになってきた気がします。</p>
             </div>
             <div class="testimonial-item">
-                <h4>「判断軸が身についた」</h4>
-                <p class="testimonial-author">30歳・会社員・利用2ヶ月</p>
-                <p>なぜその返信が選ばれたのか理由が分かる。今ではSendRightなしでも判断できるようになりました。</p>
+                <h4>「使いやすいです」</h4>
+                <p class="testimonial-author">20代・会社員</p>
+                <p>スクリーンショットをアップロードするだけなので、とても使いやすいです。3つの候補から選べるのも良いですね。</p>
             </div>
             <div class="testimonial-item">
-                <h4>「自信が取り戻せた」</h4>
-                <p class="testimonial-author">29歳・会社員・利用4ヶ月</p>
-                <p>失敗続きで自信を失っていましたが、成功体験が積み重なり、自信が取り戻せました。</p>
+                <h4>「参考になります」</h4>
+                <p class="testimonial-author">30代・会社員</p>
+                <p>自分では思いつかないような返信が出てくることがあって、参考になります。解説も勉強になります。</p>
             </div>
         </div>
+        <p class="testimonial-note">※個人の感想であり、効果を保証するものではありません。</p>
     </section>
 
     <!-- 価格セクション -->
     <section class="pricing-section fade-in" id="pricing">
-        <h2>価格</h2>
+        <h2>料金プラン</h2>
         <div class="pricing-options">
             <div class="pricing-option">
                 <div class="pricing-label">月額プラン</div>
                 <div class="pricing-amount">6,980円</div>
                 <div class="pricing-period">/月（税込）</div>
-                <p class="pricing-savings">1日あたり約233円</p>
             </div>
             <div class="pricing-option recommended">
-                <div class="pricing-label">年間プラン</div>
+                <div class="pricing-label">年額プラン</div>
                 <div class="pricing-amount">59,800円</div>
                 <div class="pricing-period">/年（税込）</div>
-                <p class="pricing-savings">28.5%OFF｜月額換算 約4,983円</p>
+                <p class="pricing-savings">月額換算 約4,983円</p>
             </div>
         </div>
         <p class="pricing-note">
-            <strong>7日間無料トライアル付き</strong><br>
-            ※登録時にクレジットカード情報が必要です。7日間は課金されません。いつでもキャンセル可能。
+            7日間の無料トライアル付き。<br>
+            トライアル期間中にキャンセルすれば、料金はかかりません。
         </p>
-        <a href="https://utage-system.com/p/eTgu7MzlKGhE" class="cta-large">今すぐ7日間無料で試す</a>
+        <a href="https://utage-system.com/p/eTgu7MzlKGhE" class="cta-large">7日間無料で試す</a>
     </section>
 
     <!-- 保証セクション -->
     <section class="fade-in">
-        <h2>100%満足保証</h2>
+        <h2>安心の無料トライアル</h2>
         <div class="guarantee-box">
-            <h3>7日間無料トライアル</h3>
-            <p>すべての機能を7日間無料でお試しいただけます。<br>
-            無料トライアル期間中にキャンセルすれば、費用は一切かかりません。<br>
-            キャンセルは会員サイトから簡単に行えます。理由を聞かれることもありません。</p>
-        </div>
-    </section>
-
-    <!-- 特典セクション -->
-    <section class="fade-in">
-        <h2>先着100名様限定特典</h2>
-        <div class="bonus-grid">
-            <div class="bonus-item">
-                <span class="bonus-badge">特典1</span>
-                <h4>デート成功の考え方ガイド</h4>
-                <p>メッセージの次のステップ「デート」での成功をサポート。通常5万円以上の有料講習でのみ提供される極秘資料。</p>
-            </div>
-            <div class="bonus-item">
-                <span class="bonus-badge">特典2</span>
-                <h4>厳選デート店リスト50選+選び方</h4>
-                <p>プロが実際に使っているお店50店以上を厳選。女性が「また来たい」と思うお店の選び方も公開。</p>
-            </div>
+            <h3>7日間無料でお試しいただけます</h3>
+            <p>すべての機能を7日間無料でご利用いただけます。<br>
+            トライアル期間中にキャンセルすれば、料金は一切かかりません。<br>
+            キャンセルはマイページから簡単に行えます。</p>
         </div>
     </section>
 
@@ -1070,29 +778,28 @@
     <section class="fade-in" id="faq">
         <h2>よくある質問</h2>
         <div class="faq-item">
-            <h3>Q. AIだといいメッセージは出ないのでは？</h3>
-            <p>SendRightは、ナンパ成功率100%を達成したプロの判断基準を基にしています。講習受講者200人以上、そのうち70%以上が3ヶ月以内に彼女ができた実績があります。</p>
+            <h3>Q. どのようなサービスですか？</h3>
+            <p>マッチングアプリでの返信をAIがサポートするサービスです。相手のメッセージを入力すると、AIが3つの返信候補を生成します。各候補には解説が付いているので、メッセージのコツも学べます。</p>
         </div>
         <div class="faq-item">
-            <h3>Q. 10秒で本当に返信できるの？</h3>
-            <p>はい。相手のメッセージを入力すると、プロの判断で最適な返信が3つ提案されます。各候補に解説が付いているので、最適なものをすぐに選べます。</p>
+            <h3>Q. 無料トライアルはありますか？</h3>
+            <p>はい。7日間の無料トライアルをご用意しています。トライアル期間中にキャンセルすれば、料金はかかりません。</p>
         </div>
         <div class="faq-item">
-            <h3>Q. 判断力は本当に身につくの？</h3>
-            <p>はい。返信と一緒に「なぜその返信なのか」の解説が表示されます。使えば使うほど、プロの判断軸が身につきます。</p>
+            <h3>Q. 解約はいつでもできますか？</h3>
+            <p>はい。マイページからいつでも解約できます。解約後も、現在の契約期間が終了するまでサービスをご利用いただけます。</p>
         </div>
         <div class="faq-item">
-            <h3>Q. 7日間の無料トライアルで本当に試せるの？</h3>
-            <p>はい。7日間はすべての機能を無料でお試しいただけます。登録時にクレジットカード情報の登録が必要ですが、7日間は課金されません。</p>
+            <h3>Q. どのマッチングアプリで使えますか？</h3>
+            <p>テキストでのやり取りを行うマッチングアプリ全般でご利用いただけます。スクリーンショットをアップロードしていただくか、メッセージをテキストで入力してご利用ください。</p>
         </div>
     </section>
 
     <!-- 最終CTA -->
     <section class="final-cta">
-        <h2>今動くか、<br>先延ばしか</h2>
-        <p>返信に悩む時間を、理想の女性との時間に変えませんか？</p>
-        <a href="https://utage-system.com/p/eTgu7MzlKGhE" class="cta-large">今すぐ7日間無料で試す</a>
-        <p class="remaining">🔥 先着100名様限定｜残り<span id="remaining-spots-final">73</span>名</p>
+        <h2>まずは無料でお試しください</h2>
+        <p>7日間の無料トライアルで、SendRightをお試しいただけます。</p>
+        <a href="https://utage-system.com/p/eTgu7MzlKGhE" class="cta-large">7日間無料で試す</a>
     </section>
 
     <!-- フッター -->
@@ -1125,30 +832,6 @@
                 navLinks.classList.toggle('active');
             });
         }
-
-        // カウントダウン
-        function updateCountdown() {
-            const now = new Date();
-            const endOfDay = new Date();
-            endOfDay.setHours(23, 59, 59, 999);
-            const diff = endOfDay - now;
-
-            const hours = Math.floor(diff / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById('countdown-hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('countdown-minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('countdown-seconds').textContent = String(seconds).padStart(2, '0');
-        }
-
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // 残り人数（リアル感のある数字）
-        const remaining = 73;
-        document.getElementById('remaining-spots').textContent = remaining;
-        document.getElementById('remaining-spots-final').textContent = remaining;
     </script>
 </body>
 </html>
