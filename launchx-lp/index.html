@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaunchX - 成果が出れば、開発費は実質0円。売上を上げるAIを作る会社</title>
+    <title>LaunchX — 作れる × 売れる｜AI × マーケ × 開発</title>
+    <meta name="description" content="合同会社LaunchX。AI × マーケティング × 開発で、作れて売れるプロダクトを。Laiset（AI自走マーケ構築代行）、Contag（AI人脈管理）、受託開発。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -36,7 +37,59 @@
             line-height: 1.8;
         }
 
-        /* Hero Section */
+        /* ===== Header ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(66, 66, 69, 0.3);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            font-size: 22px;
+            font-weight: 900;
+            text-decoration: none;
+            color: var(--text);
+            letter-spacing: -0.02em;
+        }
+
+        .header-logo span {
+            color: var(--accent);
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .header-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .header-nav a:hover {
+            color: var(--text);
+        }
+
+        /* ===== Hero ===== */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -45,31 +98,31 @@
             align-items: center;
             text-align: center;
             padding: 120px 24px;
-            background: linear-gradient(180deg, #000 0%, #1d1d1f 100%);
+            background: linear-gradient(180deg, #000 0%, #0a0a0a 50%, #1d1d1f 100%);
         }
 
         .hero-badge {
             display: inline-block;
-            background: rgba(0, 208, 132, 0.15);
-            border: 1px solid var(--accent);
+            background: rgba(0, 208, 132, 0.12);
+            border: 1px solid rgba(0, 208, 132, 0.3);
             color: var(--accent);
-            padding: 8px 20px;
+            padding: 8px 24px;
             border-radius: 100px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             margin-bottom: 32px;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         .hero h1 {
-            font-size: clamp(40px, 8vw, 80px);
+            font-size: clamp(36px, 7vw, 72px);
             font-weight: 900;
-            line-height: 1.1;
+            line-height: 1.15;
             margin-bottom: 24px;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
         }
 
-        .hero h1 span {
+        .hero h1 .gradient {
             background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -77,19 +130,20 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(18px, 3vw, 24px);
+            font-size: clamp(16px, 2.5vw, 20px);
             color: var(--text-secondary);
-            max-width: 600px;
+            max-width: 560px;
             margin-bottom: 48px;
+            line-height: 1.8;
         }
 
         .hero-cta {
             display: inline-block;
             background: var(--primary);
             color: white;
-            padding: 18px 48px;
+            padding: 16px 40px;
             border-radius: 100px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             text-decoration: none;
             transition: all 0.3s ease;
@@ -101,1386 +155,398 @@
             box-shadow: 0 10px 30px rgba(0, 113, 227, 0.3);
         }
 
-        /* Section Common */
-        section {
+        /* ===== Section Common ===== */
+        .section {
             padding: 120px 24px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-label {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--accent);
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .section-title {
-            font-size: clamp(32px, 5vw, 56px);
+            font-size: clamp(28px, 4vw, 48px);
             font-weight: 900;
             line-height: 1.2;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             letter-spacing: -0.02em;
         }
 
         .section-description {
-            font-size: 18px;
+            font-size: 16px;
             color: var(--text-secondary);
-            max-width: 700px;
-            margin-bottom: 64px;
+            max-width: 640px;
+            margin-bottom: 56px;
+            line-height: 1.8;
         }
 
-        /* Problem Section */
-        .problem {
-            background: var(--background-light);
-            border-radius: 32px;
-            margin: 0 24px;
-            padding: 80px 48px;
-        }
-
-        .problem-grid {
+        /* ===== Services ===== */
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            margin-top: 48px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
         }
 
-        .problem-card {
-            background: rgba(255, 255, 255, 0.03);
+        .service-card {
+            background: var(--background-light);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 32px;
+            border-radius: 24px;
+            padding: 40px 32px;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
-        .problem-card:hover {
+        .service-card:hover {
             border-color: var(--primary);
             transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
-        .problem-icon {
-            font-size: 48px;
+        .service-icon {
+            font-size: 40px;
             margin-bottom: 20px;
         }
 
-        .problem-card h3 {
-            font-size: 20px;
+        .service-name {
+            font-size: 13px;
+            color: var(--accent);
             font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .problem-card p {
-            color: var(--text-secondary);
-            font-size: 15px;
-        }
-
-        /* Solution Section */
-        .solution {
-            text-align: center;
-        }
-
-        .solution-highlight {
-            background: linear-gradient(135deg, rgba(0, 113, 227, 0.1) 0%, rgba(0, 208, 132, 0.1) 100%);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 48px;
-            margin: 48px 0;
-        }
-
-        .solution-highlight h3 {
-            font-size: clamp(24px, 4vw, 40px);
-            font-weight: 900;
-            margin-bottom: 16px;
-        }
-
-        .solution-highlight p {
-            font-size: 18px;
-            color: var(--text-secondary);
-        }
-
-        /* Comparison Section */
-        .comparison {
-            overflow-x: auto;
-        }
-
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 48px;
-            min-width: 600px;
-        }
-
-        .comparison-table th,
-        .comparison-table td {
-            padding: 24px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .comparison-table th {
-            font-size: 14px;
-            color: var(--text-secondary);
-            font-weight: 500;
-            text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 4px;
         }
 
-        .comparison-table td {
-            font-size: 16px;
-        }
-
-        .comparison-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .comparison-table .highlight {
-            background: rgba(0, 208, 132, 0.1);
-        }
-
-        .comparison-table .highlight td {
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        .badge-bad {
-            background: rgba(255, 59, 48, 0.2);
-            color: #ff3b30;
-            padding: 4px 12px;
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        .badge-good {
-            background: rgba(0, 208, 132, 0.2);
-            color: var(--accent);
-            padding: 4px 12px;
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        /* Process Section */
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 32px;
-            margin-top: 64px;
-        }
-
-        .process-step {
-            position: relative;
-            padding: 32px;
-            background: var(--background-light);
-            border-radius: 20px;
-            border: 1px solid var(--border);
-        }
-
-        .process-number {
-            position: absolute;
-            top: -16px;
-            left: 32px;
-            width: 40px;
-            height: 40px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .process-step h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin: 16px 0 12px;
-        }
-
-        .process-step p {
-            color: var(--text-secondary);
-            font-size: 15px;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            text-align: center;
-        }
-
-        .pricing-card {
-            background: linear-gradient(135deg, var(--background-light) 0%, #2d2d2f 100%);
-            border: 2px solid var(--primary);
-            border-radius: 32px;
-            padding: 64px 48px;
-            max-width: 600px;
-            margin: 48px auto;
-        }
-
-        .pricing-badge {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 24px;
-        }
-
-        .pricing-deposit {
-            font-size: 16px;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-        }
-
-        .pricing-amount {
-            font-size: clamp(48px, 8vw, 72px);
+        .service-card h3 {
+            font-size: 22px;
             font-weight: 900;
             margin-bottom: 8px;
+            letter-spacing: -0.01em;
         }
 
-        .pricing-unit {
-            font-size: 18px;
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-        }
-
-        .pricing-revenue {
-            background: rgba(0, 208, 132, 0.1);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 32px;
-        }
-
-        .pricing-revenue p {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .pricing-features {
-            list-style: none;
-            text-align: left;
-            margin-bottom: 32px;
-        }
-
-        .pricing-features li {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
-        .pricing-features .check {
-            color: var(--accent);
-            font-size: 20px;
-        }
-
-        /* Target Section */
-        .target-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-top: 48px;
-        }
-
-        .target-card {
-            background: var(--background-light);
-            border-radius: 20px;
-            padding: 32px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .target-card:hover {
-            border-color: var(--primary);
-        }
-
-        .target-card h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .target-card p {
-            color: var(--text-secondary);
+        .service-usp {
             font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.7;
+            flex-grow: 1;
         }
 
-        /* FAQ Section */
-        .faq-list {
-            max-width: 800px;
-            margin: 48px auto 0;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid var(--border);
-            padding: 32px 0;
-        }
-
-        .faq-item:first-child {
-            border-top: 1px solid var(--border);
-        }
-
-        .faq-question {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        .faq-question::before {
-            content: 'Q';
+        .service-link {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            min-width: 28px;
-            height: 28px;
-            background: var(--primary);
-            border-radius: 6px;
+            gap: 6px;
+            color: var(--primary);
+            text-decoration: none;
             font-size: 14px;
             font-weight: 700;
+            transition: gap 0.3s ease;
         }
 
-        .faq-answer {
+        .service-link:hover {
+            gap: 10px;
+        }
+
+        /* ===== About ===== */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .about-mission {
+            background: linear-gradient(135deg, rgba(0, 113, 227, 0.08) 0%, rgba(0, 208, 132, 0.08) 100%);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+        }
+
+        .about-mission h3 {
+            font-size: 20px;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .about-mission p {
+            font-size: 15px;
             color: var(--text-secondary);
-            font-size: 16px;
-            padding-left: 40px;
+            line-height: 1.8;
         }
 
-        /* CTA Section */
-        .cta {
+        .about-info {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .about-row {
+            display: flex;
+            gap: 16px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .about-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .about-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            min-width: 100px;
+            flex-shrink: 0;
+        }
+
+        .about-value {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* ===== Contact ===== */
+        .contact-section {
             text-align: center;
             padding: 120px 24px;
             background: linear-gradient(180deg, var(--background) 0%, var(--background-light) 100%);
         }
 
-        .cta h2 {
-            font-size: clamp(32px, 5vw, 48px);
-            font-weight: 900;
-            margin-bottom: 24px;
+        .contact-inner {
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .cta p {
-            font-size: 18px;
+        .contact-card {
+            background: var(--background-light);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 48px 40px;
+            margin-top: 40px;
+        }
+
+        .contact-card p {
+            font-size: 15px;
             color: var(--text-secondary);
-            margin-bottom: 48px;
+            margin-bottom: 24px;
+            line-height: 1.8;
         }
 
-        .cta-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 16px;
-        }
-
-        .cta-primary {
+        .contact-email {
             display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 18px 48px;
-            border-radius: 100px;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .cta-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 113, 227, 0.3);
-        }
-
-        .cta-secondary {
-            display: inline-block;
-            background: transparent;
             color: var(--primary);
-            padding: 18px 48px;
-            border-radius: 100px;
-            font-size: 18px;
-            font-weight: 700;
             text-decoration: none;
-            border: 2px solid var(--primary);
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
         }
 
-        .cta-secondary:hover {
-            background: rgba(0, 113, 227, 0.1);
+        .contact-email:hover {
+            color: var(--accent);
         }
 
-        /* Footer */
+        /* ===== Footer ===== */
         footer {
             text-align: center;
             padding: 48px 24px;
             border-top: 1px solid var(--border);
-            color: var(--text-secondary);
-            font-size: 14px;
         }
 
-        footer a {
+        .footer-logo {
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s ease;
         }
 
-        footer a:hover {
+        .footer-links a:hover {
             color: var(--text);
         }
 
-        /* Responsive */
+        .footer-copy {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        /* ===== Responsive ===== */
         @media (max-width: 768px) {
-            .problem {
-                margin: 0 16px;
-                padding: 48px 24px;
+            .header-nav {
+                gap: 20px;
             }
 
-            section {
+            .header-nav a {
+                font-size: 13px;
+            }
+
+            .section {
                 padding: 80px 16px;
             }
 
-            .pricing-card {
-                padding: 48px 24px;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        /* ===== ダン・ケネディ式 アグレッシブ施策 ===== */
-
-        /* 1. 緊急性バー（上部固定） */
-        .urgency-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(90deg, #ff3b30 0%, #ff6b35 100%);
-            color: white;
-            text-align: center;
-            padding: 12px 24px;
-            font-size: 14px;
-            font-weight: 700;
-            z-index: 9999;
-        }
-
-        .urgency-bar .pulse {
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        /* 2. スクロール進捗バー */
-        .scroll-progress {
-            position: fixed;
-            top: 44px;
-            left: 0;
-            height: 3px;
-            background: var(--accent);
-            z-index: 9998;
-            transition: width 0.1s ease;
-        }
-
-        /* 3. スティッキーCTA（50%スクロール後表示） */
-        .sticky-cta {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 16px 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 24px;
-            z-index: 9997;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-            border-top: 1px solid var(--border);
-        }
-
-        .sticky-cta.visible {
-            transform: translateY(0);
-        }
-
-        .sticky-cta-text {
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .sticky-cta-text span {
-            color: var(--accent);
-        }
-
-        .sticky-cta-btn {
-            background: var(--primary);
-            color: white;
-            padding: 14px 32px;
-            border-radius: 100px;
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .sticky-cta-btn:hover {
-            background: var(--primary-dark);
-            transform: scale(1.05);
-        }
-
-        /* 4. Exit Intent Popup */
-        .exit-popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 99999;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 24px;
-        }
-
-        .exit-popup-overlay.visible {
-            display: flex;
-        }
-
-        .exit-popup {
-            background: var(--background-light);
-            border-radius: 24px;
-            padding: 48px;
-            max-width: 500px;
-            text-align: center;
-            position: relative;
-            border: 2px solid var(--accent);
-            animation: popIn 0.3s ease;
-        }
-
-        @keyframes popIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .exit-popup-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 24px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .exit-popup-close:hover {
-            color: var(--text);
-        }
-
-        .exit-popup h3 {
-            font-size: 28px;
-            font-weight: 900;
-            margin-bottom: 16px;
-        }
-
-        .exit-popup p {
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-            font-size: 16px;
-        }
-
-        .exit-popup-benefits {
-            background: rgba(0, 208, 132, 0.1);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 32px;
-            text-align: left;
-        }
-
-        .exit-popup-benefits li {
-            padding: 8px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 15px;
-        }
-
-        .exit-popup-benefits li::before {
-            content: '🎁';
-        }
-
-        .exit-popup-btn {
-            display: block;
-            background: var(--accent);
-            color: #000;
-            padding: 18px 48px;
-            border-radius: 100px;
-            font-size: 18px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            margin-bottom: 16px;
-        }
-
-        .exit-popup-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .exit-popup-skip {
-            color: var(--text-secondary);
-            font-size: 14px;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
-        /* ヒーローセクションのパディング調整（緊急性バー分） */
-        .hero {
-            padding-top: 160px;
-        }
-
-        /* 右上リンク（ご契約済みの方へ） */
-        .top-link {
-            position: fixed;
-            top: 56px;
-            right: 24px;
-            font-size: 13px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            z-index: 9996;
-            transition: color 0.3s ease;
-        }
-
-        .top-link:hover {
-            color: var(--text);
-        }
-
-        @media (max-width: 768px) {
-            .top-link {
-                top: 52px;
-                right: 16px;
-                font-size: 12px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .sticky-cta {
-                flex-direction: column;
-                gap: 12px;
-                padding: 12px 16px;
-            }
-
-            .sticky-cta-text {
-                font-size: 14px;
-            }
-
-            .sticky-cta-btn {
-                width: 100%;
-                text-align: center;
-            }
-
-            .exit-popup {
-                padding: 32px 24px;
-            }
-
-            .exit-popup h3 {
-                font-size: 24px;
-            }
-        }
-
-        /* 5. Utageフォームモーダル */
-        .form-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 100000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 24px;
-        }
-
-        .form-modal-overlay.visible {
-            display: flex;
-        }
-
-        .form-modal {
-            background: var(--background-light);
-            border-radius: 24px;
-            padding: 48px;
-            max-width: 480px;
-            width: 100%;
-            position: relative;
-            border: 2px solid var(--primary);
-            animation: popIn 0.3s ease;
-        }
-
-        .form-modal-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 28px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .form-modal-close:hover {
-            color: var(--text);
-        }
-
-        .form-modal-header {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .form-modal-badge {
-            display: inline-block;
-            background: rgba(0, 208, 132, 0.15);
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .form-modal-header h3 {
-            font-size: 28px;
-            font-weight: 900;
-            margin-bottom: 12px;
-        }
-
-        .form-modal-header p {
-            color: var(--text-secondary);
-            font-size: 15px;
-        }
-
-        .utage-form .form-group {
-            margin-bottom: 24px;
-        }
-
-        .utage-form label {
-            display: block;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--text);
-        }
-
-        .utage-form input[type="email"] {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            background: var(--background);
-            color: var(--text);
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
-
-        .utage-form input[type="email"]:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .utage-form input[type="email"]::placeholder {
-            color: var(--text-secondary);
-        }
-
-        .form-submit-btn {
-            width: 100%;
-            padding: 18px 32px;
-            background: var(--accent);
-            color: #000;
-            border: none;
-            border-radius: 100px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .form-submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 208, 132, 0.3);
-        }
-
-        .form-modal-benefits {
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border);
-        }
-
-        .form-modal-benefits p {
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-        }
-
-        .form-modal-benefits ul {
-            list-style: none;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-
-        .form-modal-benefits li {
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-
-        .form-modal-privacy {
-            margin-top: 16px;
-            font-size: 12px;
-            color: var(--text-secondary);
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            .form-modal {
-                padding: 32px 24px;
-            }
-
-            .form-modal-header h3 {
-                font-size: 24px;
-            }
-
-            .form-modal-benefits ul {
+            .services-grid {
                 grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .contact-section {
+                padding: 80px 16px;
+            }
+
+            .contact-card {
+                padding: 32px 24px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 0. 右上リンク（ご契約済みの方へ） -->
-    <a href="referral.html" class="top-link">ご契約済みの方へ →</a>
-
-    <!-- 1. 緊急性バー -->
-    <div class="urgency-bar">
-        <span class="pulse">🔥</span> 今月の受付枠：残り <strong>3社</strong> ｜ 審査制のため、お早めにお問い合わせください
-    </div>
-
-    <!-- 2. スクロール進捗バー -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-
-    <!-- 3. スティッキーCTA（50%スクロール後表示） -->
-    <div class="sticky-cta" id="stickyCta">
-        <p class="sticky-cta-text">今なら <span>4つの特典</span> 付き</p>
-        <a href="#contact" class="sticky-cta-btn">無料相談で特典をもらう →</a>
-    </div>
-
-    <!-- 4. Exit Intent Popup -->
-    <div class="exit-popup-overlay" id="exitPopup">
-        <div class="exit-popup">
-            <button class="exit-popup-close" onclick="closeExitPopup()">×</button>
-            <h3>ちょっと待って！</h3>
-            <p>無料相談しなくても、<br><strong>4つの特典だけ</strong>もらえます。</p>
-            
-            <ul class="exit-popup-benefits">
-                <li>AI導入チェックリスト（PDF）</li>
-                <li>AI導入で失敗する5つの理由（PDF）</li>
-                <li>業界別AI活用事例集（PDF）</li>
-                <li>AI導入コスト計算シート（Excel）</li>
-            </ul>
-            
-            <button class="exit-popup-btn" onclick="closeExitPopup(); openFormModal();">特典だけもらう（無料）→</button>
-            <p class="exit-popup-skip" onclick="closeExitPopup()">今はいらない</p>
-        </div>
-    </div>
-
-    <!-- 5. Utageフォームモーダル -->
-    <div class="form-modal-overlay" id="formModal">
-        <div class="form-modal">
-            <button class="form-modal-close" onclick="closeFormModal()">×</button>
-            
-            <div class="form-modal-header">
-                <p class="form-modal-badge">🎁 4つの特典付き</p>
-                <h3>無料相談に申し込む</h3>
-                <p>メールアドレスを入力してください。<br>特典をすぐにお送りします。</p>
-            </div>
-            
-            <form action="https://utage-system.com/r/G9jpOzH5YZha/store" method="post" class="utage-form">
-                <div class="form-group">
-                    <label for="mail">メールアドレス</label>
-                    <input type="email" id="mail" name="mail" required placeholder="example@company.com" autocomplete="email">
-                </div>
-                <button type="submit" class="form-submit-btn">特典を受け取る →</button>
-            </form>
-            
-            <div class="form-modal-benefits">
-                <p>受け取れる特典:</p>
-                <ul>
-                    <li>✓ AI導入チェックリスト</li>
-                    <li>✓ AI導入で失敗する5つの理由</li>
-                    <li>✓ 業界別AI活用事例集</li>
-                    <li>✓ AI導入コスト計算シート</li>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="/" class="header-logo">Launch<span>X</span></a>
+            <nav>
+                <ul class="header-nav">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
-            </div>
-            
-            <p class="form-modal-privacy">ご入力いただいた情報は厳重に管理し、第三者に提供することはありません。</p>
+            </nav>
         </div>
-    </div>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <span class="hero-badge">成果報酬型AI開発</span>
-        <h1>成果が出れば、<br><span>開発費は実質0円。</span></h1>
-        <p class="hero-subtitle">AI開発に500万円。成果ゼロ。<br>そんな時代は終わりました。</p>
-        <a href="#contact" class="hero-cta">無料相談で特典をもらう →</a>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <span class="hero-badge">AI × Marketing × Development</span>
+        <h1><span class="gradient">作れる × 売れる</span></h1>
+        <p class="hero-subtitle">AI、マーケティング、開発——<br>3つの力で、事業を加速させるスタジオです。</p>
+        <a href="#contact" class="hero-cta">お問い合わせ →</a>
     </section>
 
-    <!-- Problem Section -->
-    <div class="problem">
-        <p class="section-label">Problem</p>
-        <h2 class="section-title">AI開発会社に<br>こんな不満を感じていませんか？</h2>
-        <div class="problem-grid">
-            <div class="problem-card">
-                <div class="problem-icon">💸</div>
-                <h3>初期費用が高すぎる</h3>
-                <p>普通のAI開発会社に頼むと、500万円〜1,000万円。成果が出るかも分からないのに、先に払う必要がある。</p>
-            </div>
-            <div class="problem-card">
-                <div class="problem-icon">🤷</div>
-                <h3>成果が保証されない</h3>
-                <p>「AIを作りました」で終わり。売上が上がるかどうかは分からない。失敗しても払う必要がある。</p>
-            </div>
-            <div class="problem-card">
-                <div class="problem-icon">🔧</div>
-                <h3>作って終わり、放置</h3>
-                <p>納品後は改善も更新もなし。AIは古くなっていく一方。サポートも期待できない。</p>
-            </div>
-            <div class="problem-card">
-                <div class="problem-icon">📚</div>
-                <h3>「売る」視点がない</h3>
-                <p>技術はあっても「売上を上げる」視点がない。だから、AIは作れても「成果が出るAI」は作れない。</p>
-            </div>
-        </div>
-    </div>
+    <!-- Services -->
+    <section class="section" id="services">
+        <p class="section-label">Services</p>
+        <h2 class="section-title">私たちのサービス</h2>
+        <p class="section-description">自社プロダクトの開発・運用で磨いた技術を、お客様の事業にも。</p>
 
-    <!-- Solution Section -->
-    <section class="solution">
-        <p class="section-label">Solution</p>
-        <h2 class="section-title">LaunchXは違う。</h2>
-        <p class="section-description">「売上を上げる」ことだけを考えたAIを作る。しかも、成果が出なければ実質0円。</p>
-        
-        <div class="solution-highlight">
-            <h3>デポジット30万円だけ。<br>成果が出れば、全額戻ってくる。</h3>
-            <p>成果報酬は利益増加分の30%。デポジットは報酬に充当されるので、成果が出れば実質0円。</p>
-        </div>
-    </section>
+        <div class="services-grid">
+            <!-- Laiset -->
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <p class="service-name">Laiset</p>
+                <h3>ぜんぶ、手放せる。</h3>
+                <p class="service-usp">LINE × AI × 自動化で、マーケティングを仕組みにする。集客・ナーチャリング・セールスを、AIが自走する体制を構築代行します。</p>
+                <a href="/laiset" class="service-link">詳しく見る →</a>
+            </div>
 
-    <!-- Comparison Section -->
-    <section class="comparison">
-        <p class="section-label">Comparison</p>
-        <h2 class="section-title">普通のAI開発会社との違い</h2>
-        
-        <table class="comparison-table">
-            <thead>
-                <tr>
-                    <th>項目</th>
-                    <th>普通のAI開発会社</th>
-                    <th>LaunchX</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>初期費用</td>
-                    <td><span class="badge-bad">500万円〜1,000万円</span></td>
-                    <td><span class="badge-good">デポジット30万円のみ</span></td>
-                </tr>
-                <tr>
-                    <td>成果保証</td>
-                    <td><span class="badge-bad">なし</span></td>
-                    <td><span class="badge-good">あり（成果報酬型）</span></td>
-                </tr>
-                <tr>
-                    <td>失敗した場合</td>
-                    <td><span class="badge-bad">全額払う</span></td>
-                    <td><span class="badge-good">デポジット30万円のみ</span></td>
-                </tr>
-                <tr>
-                    <td>開発後</td>
-                    <td><span class="badge-bad">放置（改善なし）</span></td>
-                    <td><span class="badge-good">常に改善・更新</span></td>
-                </tr>
-                <tr>
-                    <td>売上を上げる視点</td>
-                    <td><span class="badge-bad">技術だけ</span></td>
-                    <td><span class="badge-good">売上を上げることに特化</span></td>
-                </tr>
-                <tr class="highlight">
-                    <td>あなたのリスク</td>
-                    <td>500万円〜1,000万円</td>
-                    <td>30万円のみ（1/15以下）</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+            <!-- Contag -->
+            <div class="service-card">
+                <div class="service-icon">🎙️</div>
+                <p class="service-name">Contag</p>
+                <h3>声と写真だけ。</h3>
+                <p class="service-usp">名刺を撮る。会った感想を声で言う。あとはAIが、整理も、分類も、フォローアップ提案も——ぜんぶやる。AI人脈管理アプリ。</p>
+                <a href="/contag" class="service-link">詳しく見る →</a>
+            </div>
 
-    <!-- Process Section -->
-    <section>
-        <p class="section-label">Process</p>
-        <h2 class="section-title">導入の流れ</h2>
-        <p class="section-description">審査から運用開始まで、約4週間。成果が出るまで、伴走します。</p>
-        
-        <div class="process-steps">
-            <div class="process-step">
-                <div class="process-number">1</div>
-                <h3>無料相談・審査</h3>
-                <p>まずはお話を聞かせてください。成果が出せる案件かどうか、審査させていただきます。</p>
-            </div>
-            <div class="process-step">
-                <div class="process-number">2</div>
-                <h3>契約・デポジット</h3>
-                <p>審査通過後、契約を締結。デポジット30万円をお支払いいただきます。</p>
-            </div>
-            <div class="process-step">
-                <div class="process-number">3</div>
-                <h3>AI開発（2-4週間）</h3>
-                <p>御社専用のAIを開発。マーケティング知識を学習させ、売上を上げるAIを作ります。</p>
-            </div>
-            <div class="process-step">
-                <div class="process-number">4</div>
-                <h3>運用開始</h3>
-                <p>AIの運用を開始。利益増加分の30%をお支払いいただきます。デポジットは報酬に充当されます。</p>
+            <!-- 受託開発 -->
+            <div class="service-card">
+                <div class="service-icon">🛠️</div>
+                <p class="service-name">Custom Development</p>
+                <h3>何でも、作れます。</h3>
+                <p class="service-usp">AIチャットボット、業務自動化、LP・Webサイト制作、マーケティング戦略設計まで。「作る」と「売る」の両方がわかるチームが対応します。</p>
+                <a href="mailto:admin@launchx.jp?subject=%E5%8F%97%E8%A8%97%E9%96%8B%E7%99%BA%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87" class="service-link">お問い合わせ →</a>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <p class="section-label">Pricing</p>
-        <h2 class="section-title">料金体系</h2>
-        
-        <div class="pricing-card">
-            <span class="pricing-badge">成果報酬型</span>
-            <p class="pricing-deposit">デポジット（成果報酬に充当）</p>
-            <p class="pricing-amount">30<span style="font-size: 32px;">万円</span></p>
-            <p class="pricing-unit">初期費用はこれだけ</p>
-            
-            <div class="pricing-revenue">
-                <p>+ 利益増加分の30%</p>
-            </div>
-            
-            <ul class="pricing-features">
-                <li><span class="check">✓</span> カスタムAI開発</li>
-                <li><span class="check">✓</span> 売上を上げる仕組みを設計</li>
-                <li><span class="check">✓</span> 継続的な改善・更新</li>
-                <li><span class="check">✓</span> 月次レポート・改善提案</li>
-                <li><span class="check">✓</span> 技術サポート（24時間以内に返信）</li>
-                <li><span class="check">✓</span> 新機能の自動追加</li>
-            </ul>
-            
-            <a href="#contact" class="hero-cta" style="width: 100%; display: block;">無料相談で特典をもらう →</a>
-        </div>
-    </section>
+    <!-- About -->
+    <section class="section" id="about">
+        <p class="section-label">About</p>
+        <h2 class="section-title">会社概要</h2>
 
-    <!-- Target Section -->
-    <section>
-        <p class="section-label">Target</p>
-        <h2 class="section-title">こんな業界に最適です</h2>
-        <p class="section-description">顧客対応が多く、専門知識が必要な業界で、最も効果を発揮します。</p>
-        
-        <div class="target-grid">
-            <div class="target-card">
-                <h3>💪 パーソナルトレーニング</h3>
-                <p>食事指導、トレーニング指導の質問対応をAIが代行。トレーナーは指導に集中できます。</p>
+        <div class="about-content">
+            <div class="about-mission">
+                <h3>Build it. Market it. Ship it.</h3>
+                <p>「作れるけど売れない」「売れるけど作れない」——その両方を解決するために、LaunchXは生まれました。AIと、マーケティングと、開発。3つの専門性を兼ね備えた、小さくて速いスタジオです。</p>
             </div>
-            <div class="target-card">
-                <h3>📚 オンラインスクール</h3>
-                <p>受講生からの質問、進捗確認をAIが対応。講師はレッスンに集中できます。</p>
-            </div>
-            <div class="target-card">
-                <h3>💼 コンサルティング</h3>
-                <p>クライアントからの質問対応をAIが代行。コンサルタントは本質的な提案に集中できます。</p>
-            </div>
-            <div class="target-card">
-                <h3>🎯 コーチング</h3>
-                <p>セッション外のフォローアップをAIが対応。コーチはセッションに集中できます。</p>
-            </div>
-            <div class="target-card">
-                <h3>🏠 不動産</h3>
-                <p>物件情報、内見予約の問い合わせをAIが対応。営業は成約に集中できます。</p>
-            </div>
-            <div class="target-card">
-                <h3>💄 美容・エステ</h3>
-                <p>カウンセリング、予約管理をAIが対応。スタッフは施術に集中できます。</p>
+
+            <div class="about-info">
+                <div class="about-row">
+                    <span class="about-label">会社名</span>
+                    <span class="about-value">合同会社LaunchX</span>
+                </div>
+                <div class="about-row">
+                    <span class="about-label">代表</span>
+                    <span class="about-value">川村 健志（Takeshi Kawamura）</span>
+                </div>
+                <div class="about-row">
+                    <span class="about-label">設立</span>
+                    <span class="about-value">2025年</span>
+                </div>
+                <div class="about-row">
+                    <span class="about-label">事業内容</span>
+                    <span class="about-value">AI開発 / マーケティング支援 / Web開発 / 自社プロダクト運営</span>
+                </div>
+                <div class="about-row">
+                    <span class="about-label">メール</span>
+                    <span class="about-value"><a href="mailto:admin@launchx.jp" style="color: var(--primary); text-decoration: none;">admin@launchx.jp</a></span>
+                </div>
+                <div class="about-row">
+                    <span class="about-label">Web</span>
+                    <span class="about-value"><a href="https://launchx.jp" style="color: var(--primary); text-decoration: none;">launchx.jp</a></span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section>
-        <p class="section-label">FAQ</p>
-        <h2 class="section-title">よくある質問</h2>
-        
-        <div class="faq-list">
-            <div class="faq-item">
-                <p class="faq-question">成果が出なかった場合はどうなりますか？</p>
-                <p class="faq-answer">デポジット30万円のみのお支払いで、それ以上の費用はかかりません。普通のAI開発会社に頼むと500万円以上かかるリスクがありますが、LaunchXではリスクを30万円に抑えられます。</p>
-            </div>
-            <div class="faq-item">
-                <p class="faq-question">デポジットは返金されますか？</p>
-                <p class="faq-answer">デポジットは成果報酬に充当されます。成果が出れば、デポジット分は報酬として消化されるため、実質0円で開発したことになります。成果が出なかった場合は、デポジットのみのお支払いとなります。</p>
-            </div>
-            <div class="faq-item">
-                <p class="faq-question">「利益増加分の30%」はどう計算しますか？</p>
-                <p class="faq-answer">
-                    <strong>【対象】</strong>AIが関与した取引のみを対象にします（AIチャット経由の成約、AIフォーム経由の問い合わせなど）。<br><br>
-                    <strong>【計算式】</strong>貢献利益（売上 − 変動費）の増分 × 30%。固定費は除外します。<br><br>
-                    <strong>【ベースライン】</strong>導入前3ヶ月の平均貢献利益をベースラインとします。<br><br>
-                    <strong>【報告】</strong>毎月末に売上・変動費をご報告いただき、双方合意の上で確定します。
-                </p>
-            </div>
-            <div class="faq-item">
-                <p class="faq-question">月ごとに精算するのですか？</p>
-                <p class="faq-answer">月次は「仮締め」です。返金・未回収・計上タイミングのズレがあるため、四半期ごとに「精算（True-up）」を行います。過不足があれば調整します。</p>
-            </div>
-            <div class="faq-item">
-                <p class="faq-question">価格改定やキャンペーンをした場合はどうなりますか？</p>
-                <p class="faq-answer">価格改定、大型キャンペーン、新商品追加などは、成果報酬の計算から除外するか、別途協議とします。AIの効果と他の要因を切り分けるためです。詳細は契約時に合意します。</p>
-            </div>
-            <div class="faq-item">
-                <p class="faq-question">契約期間はどのくらいですか？</p>
-                <p class="faq-answer">最低契約期間は12ヶ月です。12ヶ月後は、3ヶ月前までに書面で通知いただければ、いつでも解約可能です。違約金はありません。</p>
-            </div>
-            <div class="faq-item">
-                <p class="faq-question">解約後、AIは使えなくなりますか？</p>
-                <p class="faq-answer">はい、SaaS型のため、解約後はAI利用が停止となります。ただし、お客様のデータは30日以内にエクスポート対応いたします。</p>
-            </div>
-            <div class="faq-item">
-                <p class="faq-question">なぜ成果報酬型なのですか？</p>
-                <p class="faq-answer">私たちは自信を持っているからです。自社でもAIプロダクトを開発・運用しており、実際に売上を上げた実績があります。成果が出る確率が高いからこそ、成果報酬型でリスクを取れるのです。</p>
-            </div>
-            <div class="faq-item">
-                <p class="faq-question">売上の申告は自己申告ですか？</p>
-                <p class="faq-answer">
-                    <strong>決済システム連携を推奨しています。</strong>Stripe/PayPal等の決済データを直接参照できるようにしていただくことで、正確な数字で計算できます。<br><br>
-                    また、契約には<strong>監査権</strong>が含まれます。年1回、帳簿・決済履歴を確認させていただく場合があります。<br><br>
-                    <strong>虚偽申告が発覚した場合</strong>は、過去の成果報酬の2倍を請求、契約即時解除、デポジット没収となります。お互いの信頼関係を大切にしたいため、透明性のある取引をお願いしています。
-                </p>
-            </div>
-        </div>
-    </section>
+    <!-- Contact -->
+    <section class="contact-section" id="contact">
+        <div class="contact-inner">
+            <p class="section-label">Contact</p>
+            <h2 class="section-title">お問い合わせ</h2>
 
-    <!-- Bonus Section -->
-    <section id="contact">
-        <p class="section-label">Bonus</p>
-        <h2 class="section-title">無料相談するだけで<br>4つの特典をプレゼント</h2>
-        <p class="section-description">相談するだけで、以下の特典をメールでお送りします。契約しなくてもOK。</p>
-        
-        <div class="target-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
-            <div class="target-card" style="border-color: var(--accent);">
-                <h3>🎁 特典1</h3>
-                <p style="font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 8px;">AI導入チェックリスト</p>
-                <p>AI導入で成果が出るか15項目でセルフチェック（PDF）</p>
+            <div class="contact-card">
+                <p>サービスについてのご質問、受託開発のご相談など、<br>お気軽にご連絡ください。</p>
+                <a href="mailto:admin@launchx.jp" class="contact-email">admin@launchx.jp</a>
             </div>
-            <div class="target-card" style="border-color: var(--accent);">
-                <h3>🎁 特典2</h3>
-                <p style="font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 8px;">AI導入で失敗する5つの理由</p>
-                <p>よくある失敗パターンと回避方法（PDF）</p>
-            </div>
-            <div class="target-card" style="border-color: var(--accent);">
-                <h3>🎁 特典3</h3>
-                <p style="font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 8px;">業界別AI活用事例集</p>
-                <p>パーソナルトレーニング、スクール等の事例（PDF）</p>
-            </div>
-            <div class="target-card" style="border-color: var(--accent);">
-                <h3>🎁 特典4</h3>
-                <p style="font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 8px;">AI導入コスト計算シート</p>
-                <p>人件費削減額を自動計算できるExcelテンプレート</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <h2>無料相談で4つの特典をゲット</h2>
-        <p>契約しなくても特典はメールでお送りします。<br>まずはお気軽にご相談ください。</p>
-        <div class="cta-buttons">
-            <a href="#" class="cta-primary" onclick="openFormModal(); return false;">無料相談で特典をもらう →</a>
-            <a href="#pricing" class="cta-secondary">料金を見る</a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>© 2025 LaunchX. All rights reserved.</p>
-        <p style="margin-top: 8px;">
-            <a href="mailto:support@launchx.jp">support@launchx.jp</a>
-        </p>
+        <p class="footer-logo">Launch<span>X</span></p>
+        <div class="footer-links">
+            <a href="/laiset">Laiset</a>
+            <a href="/contag">Contag</a>
+            <a href="mailto:admin@launchx.jp">Contact</a>
+        </div>
+        <p class="footer-copy">© 2026 合同会社LaunchX. All rights reserved.</p>
     </footer>
-
-    <!-- ダン・ケネディ式 JavaScript -->
-    <script>
-        // ===== スクロール進捗バー =====
-        const scrollProgress = document.getElementById('scrollProgress');
-        const stickyCta = document.getElementById('stickyCta');
-        
-        function updateScrollProgress() {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            
-            // スクロール進捗バーを更新
-            scrollProgress.style.width = scrollPercent + '%';
-            
-            // 50%以上スクロールしたらスティッキーCTAを表示
-            if (scrollPercent >= 50) {
-                stickyCta.classList.add('visible');
-            } else {
-                stickyCta.classList.remove('visible');
-            }
-        }
-        
-        window.addEventListener('scroll', updateScrollProgress);
-        
-        // ===== Exit Intent Popup =====
-        const exitPopup = document.getElementById('exitPopup');
-        let exitPopupShown = false;
-        
-        function showExitPopup() {
-            if (!exitPopupShown) {
-                exitPopup.classList.add('visible');
-                exitPopupShown = true;
-                // ローカルストレージに保存（24時間は表示しない）
-                localStorage.setItem('exitPopupShown', Date.now());
-            }
-        }
-        
-        function closeExitPopup() {
-            exitPopup.classList.remove('visible');
-        }
-        
-        // ページ離脱時（マウスが上部に移動したとき）
-        document.addEventListener('mouseout', function(e) {
-            // マウスがビューポートの上部から出たとき
-            if (e.clientY < 10 && e.relatedTarget === null) {
-                // 24時間以内に表示済みならスキップ
-                const lastShown = localStorage.getItem('exitPopupShown');
-                if (lastShown && (Date.now() - parseInt(lastShown)) < 24 * 60 * 60 * 1000) {
-                    return;
-                }
-                showExitPopup();
-            }
-        });
-        
-        // モバイル用：戻るボタンやタブ切り替え時
-        document.addEventListener('visibilitychange', function() {
-            if (document.visibilityState === 'hidden') {
-                // 24時間以内に表示済みならスキップ
-                const lastShown = localStorage.getItem('exitPopupShown');
-                if (lastShown && (Date.now() - parseInt(lastShown)) < 24 * 60 * 60 * 1000) {
-                    return;
-                }
-                // モバイルでは表示しない（UXが悪いため）
-                // showExitPopup();
-            }
-        });
-        
-        // ESCキーでポップアップを閉じる
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeExitPopup();
-            }
-        });
-        
-        // オーバーレイクリックで閉じる
-        exitPopup.addEventListener('click', function(e) {
-            if (e.target === exitPopup) {
-                closeExitPopup();
-            }
-        });
-        
-        // ===== スムーススクロール時にスティッキーCTAを一時非表示 =====
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                // スティッキーCTAのリンクをクリックしたときは閉じる
-                if (this.closest('.sticky-cta')) {
-                    stickyCta.classList.remove('visible');
-                    setTimeout(() => {
-                        stickyCta.classList.add('visible');
-                    }, 1000);
-                }
-            });
-        });
-
-        // ===== Utageフォームモーダル =====
-        const formModal = document.getElementById('formModal');
-
-        function openFormModal() {
-            formModal.classList.add('visible');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeFormModal() {
-            formModal.classList.remove('visible');
-            document.body.style.overflow = '';
-        }
-
-        // ESCキーでモーダルを閉じる
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeFormModal();
-            }
-        });
-
-        // オーバーレイクリックで閉じる
-        formModal.addEventListener('click', function(e) {
-            if (e.target === formModal) {
-                closeFormModal();
-            }
-        });
-
-        // CTAボタンにモーダル表示を設定
-        document.querySelectorAll('.hero-cta, .cta-primary, .sticky-cta-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                openFormModal();
-            });
-        });
-    </script>
 </body>
 </html>
