@@ -1,0 +1,27 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/laiset",
+      "statusCode": 302,
+      "has": [
+        {
+          "type": "host",
+          "value": "laiset.jp"
+        }
+      ]
+    },
+    {
+      "source": "/",
+      "destination": "/contag",
+      "statusCode": 302,
+      "has": [
+        {
+          "type": "host",
+          "value": "contag.jp"
+        }
+      ]
+    }
+  ]
+}

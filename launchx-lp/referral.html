@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>紹介プログラム - LaunchX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0071e3;
+            --primary-dark: #0056b3;
+            --accent: #00d084;
+            --background: #000000;
+            --background-light: #1d1d1f;
+            --text: #f5f5f7;
+            --text-secondary: #86868b;
+            --border: #424245;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        /* ヘッダー */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-logo {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .header-back {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .header-back:hover {
+            color: var(--text);
+        }
+
+        /* ヒーロー */
+        .hero {
+            padding: 160px 24px 80px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 208, 132, 0.15);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* セクション */
+        section {
+            padding: 80px 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(24px, 4vw, 36px);
+            font-weight: 900;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .section-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        /* 報酬カード */
+        .reward-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .reward-card {
+            background: var(--background-light);
+            border-radius: 24px;
+            padding: 40px 32px;
+            text-align: center;
+            border: 2px solid var(--border);
+            transition: border-color 0.3s ease;
+        }
+
+        .reward-card.highlight {
+            border-color: var(--accent);
+        }
+
+        .reward-card-label {
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .reward-card h3 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .reward-card h3 span {
+            font-size: 24px;
+        }
+
+        .reward-card p {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        /* なぜ紹介？ */
+        .why-section {
+            background: var(--background-light);
+            border-radius: 24px;
+            padding: 48px 32px;
+            margin-bottom: 48px;
+        }
+
+        .why-section h3 {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .why-list {
+            list-style: none;
+        }
+
+        .why-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .why-list li:last-child {
+            border-bottom: none;
+        }
+
+        .why-list li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .why-list li strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .why-list li span {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* ステップ */
+        .steps {
+            margin-bottom: 48px;
+        }
+
+        .step {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .step-content h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        /* 計算例 */
+        .calculation {
+            background: linear-gradient(135deg, rgba(0, 113, 227, 0.1) 0%, rgba(0, 208, 132, 0.1) 100%);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 48px 32px;
+            margin-bottom: 48px;
+        }
+
+        .calculation h3 {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .calculation-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .calculation-table th,
+        .calculation-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .calculation-table th {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .calculation-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .calculation-table .highlight td {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* FAQ */
+        .faq-list {
+            margin-bottom: 48px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 24px 0;
+        }
+
+        .faq-item:first-child {
+            border-top: 1px solid var(--border);
+        }
+
+        .faq-question {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .faq-question::before {
+            content: 'Q';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            font-size: 15px;
+            padding-left: 36px;
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 80px 24px;
+            background: var(--background-light);
+            border-radius: 24px;
+        }
+
+        .cta h2 {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .cta p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: #000;
+            padding: 18px 48px;
+            border-radius: 100px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 208, 132, 0.3);
+        }
+
+        /* フッター */
+        footer {
+            text-align: center;
+            padding: 48px 24px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--text);
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 600px) {
+            .hero {
+                padding: 120px 16px 60px;
+            }
+
+            section {
+                padding: 60px 16px;
+            }
+
+            .reward-card {
+                padding: 32px 24px;
+            }
+
+            .why-section,
+            .calculation,
+            .cta {
+                padding: 32px 20px;
+            }
+
+            .step {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <a href="index.html" class="header-logo">LaunchX</a>
+        <a href="index.html" class="header-back">← トップページに戻る</a>
+    </header>
+
+    <!-- ヒーロー -->
+    <section class="hero">
+        <span class="hero-badge">ご契約者様限定</span>
+        <h1>紹介するだけで<br>10万円をお受け取り</h1>
+        <p>LaunchXをご契約いただいた方限定の紹介プログラムです。<br>お知り合いの経営者をご紹介いただくと、あなたに10万円、紹介された方にも特典があります。</p>
+    </section>
+
+    <!-- 報酬 -->
+    <section>
+        <h2 class="section-title">紹介報酬</h2>
+        <p class="section-description">紹介した方が契約すると、双方にメリットがあります。</p>
+
+        <div class="reward-grid">
+            <div class="reward-card highlight">
+                <p class="reward-card-label">あなたへの報酬</p>
+                <h3>10<span>万円</span></h3>
+                <p>紹介した方が契約したら<br>即座にお支払い</p>
+            </div>
+            <div class="reward-card">
+                <p class="reward-card-label">紹介された方の特典</p>
+                <h3>10<span>万円割引</span></h3>
+                <p>デポジット30万円が<br>20万円に割引</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- なぜ紹介プログラム？ -->
+    <section>
+        <div class="why-section">
+            <h3>なぜ紹介プログラムがあるのか？</h3>
+            <ul class="why-list">
+                <li>
+                    <div>
+                        <strong>広告費の代わりにあなたへお支払い</strong>
+                        <span>通常、新規顧客を獲得するために広告費を使います。その広告費を、紹介してくださったあなたにお支払いします。</span>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <strong>信頼できる方からの紹介は成果が出やすい</strong>
+                        <span>実際にLaunchXを使っているあなたからの紹介なら、紹介された方も安心して始められます。結果として、成果が出やすくなります。</span>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <strong>Win-Win-Winの関係</strong>
+                        <span>あなたは報酬を受け取り、紹介された方は割引を受け、私たちは信頼できるクライアントと出会える。全員にメリットがあります。</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 紹介の流れ -->
+    <section>
+        <h2 class="section-title">紹介の流れ</h2>
+        <p class="section-description">3ステップで完了します。</p>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>お知り合いに紹介</h4>
+                    <p>「LaunchXっていう成果報酬型のAI開発会社があるよ」と伝えるだけ。詳しい説明は不要です。興味があれば、LPのURLを送ってください。</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>紹介された方が無料相談</h4>
+                    <p>紹介された方が無料相談に申し込む際、事前アンケートで「紹介者のお名前」を記入してもらいます。これで紹介元があなただと分かります。</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>契約成立で報酬をお支払い</h4>
+                    <p>紹介された方が契約したら、1週間以内に10万円をお振り込みします。紹介された方にはデポジット10万円割引が自動適用されます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 計算例 -->
+    <section>
+        <div class="calculation">
+            <h3>紹介報酬の例</h3>
+            <table class="calculation-table">
+                <tr>
+                    <th>紹介人数</th>
+                    <th>あなたの報酬</th>
+                </tr>
+                <tr>
+                    <td>1人</td>
+                    <td>10万円</td>
+                </tr>
+                <tr>
+                    <td>3人</td>
+                    <td>30万円</td>
+                </tr>
+                <tr>
+                    <td>5人</td>
+                    <td>50万円</td>
+                </tr>
+                <tr class="highlight">
+                    <td>10人</td>
+                    <td>100万円</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+        <h2 class="section-title">よくある質問</h2>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <p class="faq-question">紹介できる人数に上限はありますか？</p>
+                <p class="faq-answer">上限はありません。何人でも紹介できます。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-question">報酬はいつ支払われますか？</p>
+                <p class="faq-answer">紹介された方が契約し、デポジットのお支払いを確認してから1週間以内にお振り込みします。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-question">紹介された方が審査に落ちた場合は？</p>
+                <p class="faq-answer">契約に至らなかった場合、報酬は発生しません。ただし、紹介された方には別の形でお役に立てる情報をお送りします。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-question">紹介者であることをどう証明しますか？</p>
+                <p class="faq-answer">紹介された方が事前アンケートで「紹介者のお名前」を記入することで、自動的に紐づけられます。</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-question">どんな人を紹介すればいいですか？</p>
+                <p class="faq-answer">月間100件以上の問い合わせ対応がある経営者の方が最適です。パーソナルトレーニング、オンラインスクール、コンサルティング、コーチングなどの業界が特に相性が良いです。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section>
+        <div class="cta">
+            <h2>紹介の方法</h2>
+            <p>紹介された方が、事前アンケートで<br>「紹介者のお名前」を記入すればOKです。<br>それだけで自動的に紐づきます。</p>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <p>© 2025 LaunchX. All rights reserved.</p>
+        <p style="margin-top: 8px;">
+            <a href="mailto:support@launchx.jp">support@launchx.jp</a>
+        </p>
+    </footer>
+</body>
+</html>

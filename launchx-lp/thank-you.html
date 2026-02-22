@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お申し込みありがとうございます - LaunchX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0071e3;
+            --primary-dark: #0056b3;
+            --accent: #00d084;
+            --background: #000000;
+            --background-light: #1d1d1f;
+            --text: #f5f5f7;
+            --text-secondary: #86868b;
+            --border: #424245;
+            --warning: #ff9500;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        /* ステップインジケーター */
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 48px;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .step-number.completed {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .step-number.current {
+            background: var(--primary);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        .step-number.pending {
+            background: var(--background-light);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .step-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .step-label.current {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .step-connector {
+            width: 40px;
+            height: 2px;
+            background: var(--border);
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(0, 113, 227, 0); }
+        }
+
+        /* ヘッダー */
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .header-icon {
+            font-size: 64px;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 900;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        /* メインカード */
+        .main-card {
+            background: linear-gradient(135deg, rgba(0, 113, 227, 0.1) 0%, rgba(0, 208, 132, 0.1) 100%);
+            border: 2px solid var(--primary);
+            border-radius: 24px;
+            padding: 48px 32px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .main-card-badge {
+            display: inline-block;
+            background: var(--warning);
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .main-card h2 {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 900;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .main-card p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .main-card-time {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .main-card-time span {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: #000;
+            padding: 20px 48px;
+            border-radius: 100px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 208, 132, 0.3);
+        }
+
+        /* ステップアイテム */
+        .step-item {
+            display: flex;
+            gap: 20px;
+            text-align: left;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            margin-bottom: 20px;
+        }
+
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-item-number {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .step-item-content {
+            flex: 1;
+        }
+
+        .step-item-content h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-item-content p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .step-item .cta-button {
+            padding: 14px 24px;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .line-button {
+            background: #06C755 !important;
+        }
+
+        .line-button:hover {
+            box-shadow: 0 10px 30px rgba(6, 199, 85, 0.3) !important;
+        }
+
+        /* 特典確認 */
+        .bonus-confirm {
+            background: var(--background-light);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        .bonus-confirm h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bonus-confirm h3::before {
+            content: '✅';
+        }
+
+        .bonus-list {
+            list-style: none;
+        }
+
+        .bonus-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .bonus-list li:last-child {
+            border-bottom: none;
+        }
+
+        .bonus-list li::before {
+            content: '🎁';
+        }
+
+        /* 注意事項 */
+        .notice {
+            background: rgba(255, 149, 0, 0.1);
+            border: 1px solid var(--warning);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .notice h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--warning);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .notice p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* フッター */
+        .footer {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 600px) {
+            .container {
+                padding: 48px 16px;
+            }
+
+            .main-card {
+                padding: 32px 20px;
+            }
+
+            .steps {
+                flex-wrap: wrap;
+            }
+
+            .step-connector {
+                display: none;
+            }
+
+            .step-label {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ステップインジケーター -->
+        <div class="steps">
+            <div class="step">
+                <div class="step-number completed">✓</div>
+                <span class="step-label">フォーム送信</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step">
+                <div class="step-number current">2</div>
+                <span class="step-label current">事前アンケート</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step">
+                <div class="step-number pending">3</div>
+                <span class="step-label">日程調整</span>
+            </div>
+        </div>
+
+        <!-- ヘッダー -->
+        <div class="header">
+            <div class="header-icon">🎉</div>
+            <h1>お申し込み<br>ありがとうございます！</h1>
+            <p>4つの特典をメールでお送りしました。<br>届いていない場合は迷惑メールフォルダをご確認ください。</p>
+        </div>
+
+        <!-- メインカード: 事前アンケートへの誘導 -->
+        <div class="main-card">
+            <span class="main-card-badge">⚠️ 次のステップ（2つ）</span>
+            <h2>以下の2つを<br>完了してください</h2>
+            
+            <!-- ステップ1: 事前アンケート -->
+            <div class="step-item">
+                <div class="step-item-number">1</div>
+                <div class="step-item-content">
+                    <h4>事前アンケートに回答</h4>
+                    <p>御社の状況をお聞かせください（約2分）</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdIHl7oaDeyDZ5CVt4ZbE-tn4z_Ffe8emAoJ4en7D7pFizTvg/viewform" class="cta-button" target="_blank">
+                        事前アンケートに回答する →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- ステップ2: LINE追加 -->
+            <div class="step-item">
+                <div class="step-item-number">2</div>
+                <div class="step-item-content">
+                    <h4>LINE公式アカウントを追加</h4>
+                    <p>審査結果はLINEでご連絡します</p>
+                    <a href="https://line.me/R/ti/p/@418qpjxe" class="cta-button line-button" target="_blank">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="margin-right: 8px;"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+                        LINEを追加する
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 特典確認 -->
+        <div class="bonus-confirm">
+            <h3>お送りした4つの特典</h3>
+            <ul class="bonus-list">
+                <li>AI導入チェックリスト（PDF）</li>
+                <li>AI導入で失敗する5つの理由（PDF）</li>
+                <li>業界別AI活用事例集（PDF）</li>
+                <li>AI導入コスト計算シート（Excel）</li>
+            </ul>
+        </div>
+
+        <!-- 注意事項 -->
+        <div class="notice">
+            <h4>⚠️ 重要</h4>
+            <p>審査結果は <strong>LINE</strong> でご連絡します。<br>
+            LINEを追加していない場合、ご連絡ができませんのでご注意ください。</p>
+        </div>
+
+        <!-- フッター -->
+        <div class="footer">
+            <p>ご不明な点がございましたら、お気軽にご連絡ください。<br>
+            <a href="mailto:support@launchx.jp">support@launchx.jp</a></p>
+        </div>
+    </div>
+
+    <!-- Google Analytics等のトラッキングコードをここに追加 -->
+    <script>
+        // コンバージョントラッキング用
+        // gtag('event', 'conversion', { ... });
+    </script>
+</body>
+</html>

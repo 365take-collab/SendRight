@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contag | 声と写真だけ。— AI人脈管理</title>
+    <meta name="description" content="名刺を撮る。会った感想を声で言う。あとはAIが、整理も、分類も、フォローアップ提案も——ぜんぶやる。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0071e3;
+            --primary-dark: #0056b3;
+            --accent: #00d084;
+            --background: #000000;
+            --background-light: #1d1d1f;
+            --background-card: #161b22;
+            --text: #f5f5f7;
+            --text-secondary: #86868b;
+            --border: #424245;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        /* ── Utility ── */
+        .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 100px 0; }
+        .section-label {
+            display: inline-block;
+            background: rgba(0, 208, 132, 0.12);
+            border: 1px solid rgba(0, 208, 132, 0.3);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+        }
+        .section-title {
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── Header ── */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px 0;
+        }
+        .header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-logo {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--text);
+            text-decoration: none;
+        }
+        .header-logo span { color: var(--accent); font-size: 12px; margin-left: 8px; font-weight: 400; }
+        .header-cta {
+            background: var(--accent);
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: opacity 0.2s;
+        }
+        .header-cta:hover { opacity: 0.85; }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 140px 24px 100px;
+            background: radial-gradient(ellipse at 50% 0%, rgba(0, 113, 227, 0.12) 0%, transparent 60%),
+                        linear-gradient(180deg, #000 0%, #0d1117 100%);
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 208, 132, 0.12);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 32px;
+        }
+        .hero h1 {
+            font-size: clamp(36px, 7vw, 72px);
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+        .hero-subtitle {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto 48px;
+            line-height: 1.7;
+        }
+        .hero-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            color: #fff;
+            padding: 18px 48px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 700;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 24px rgba(0, 208, 132, 0.25);
+        }
+        .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0, 208, 132, 0.35); }
+        .hero-note {
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* ── Pain Section ── */
+        .pain { background: var(--background-light); }
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+        .pain-card {
+            background: var(--background-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        .pain-card .icon { font-size: 32px; margin-bottom: 16px; }
+        .pain-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #ff6b6b; }
+        .pain-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
+
+        /* ── Turning Point ── */
+        .turning {
+            text-align: center;
+            background: linear-gradient(180deg, var(--background-light) 0%, var(--background) 100%);
+        }
+        .turning blockquote {
+            font-size: clamp(22px, 4vw, 36px);
+            font-weight: 900;
+            line-height: 1.4;
+            max-width: 700px;
+            margin: 40px auto 0;
+        }
+
+        /* ── Solution ── */
+        .solution-intro {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-bottom: 48px;
+            line-height: 1.7;
+        }
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .solution-card {
+            background: var(--background-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+        .solution-card.highlight {
+            border-color: var(--accent);
+            box-shadow: 0 0 40px rgba(0, 208, 132, 0.08);
+        }
+        .solution-card.highlight::before {
+            content: '★ 核心機能';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent);
+            color: #000;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 0 16px 0 8px;
+        }
+        .solution-card .icon { font-size: 32px; margin-bottom: 16px; }
+        .solution-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+        .solution-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
+
+        /* ── Feature 3 columns ── */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+        .feature-item { text-align: center; padding: 32px 20px; }
+        .feature-item .icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 20px;
+            background: rgba(0, 208, 132, 0.1);
+            border: 1px solid rgba(0, 208, 132, 0.2);
+        }
+        .feature-item h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+        .feature-item p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+        /* ── Flow ── */
+        .flow-list {
+            max-width: 640px;
+            margin: 48px auto 0;
+        }
+        .flow-step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+        .flow-step .num {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 16px;
+            color: #fff;
+        }
+        .flow-step h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+        .flow-step p { font-size: 14px; color: var(--text-secondary); }
+
+        /* ── CTA Final ── */
+        .cta-final {
+            text-align: center;
+            padding: 100px 24px;
+            background: radial-gradient(ellipse at 50% 100%, rgba(0, 208, 132, 0.1) 0%, transparent 60%);
+        }
+        .cta-final h2 {
+            font-size: clamp(28px, 5vw, 44px);
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+        .cta-final p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-final .urgency {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 24px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            text-align: center;
+            padding: 40px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .footer a { color: var(--text-secondary); text-decoration: none; }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .section { padding: 72px 0; }
+            .pain-grid, .solution-grid, .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+    <div class="header-inner">
+        <a href="#hero" class="header-logo">Contag<span>コンタグ</span></a>
+        <a href="#contact" class="header-cta">βテストに参加する</a>
+    </div>
+</header>
+
+<!-- Hero -->
+<section id="hero" class="hero">
+    <div class="hero-badge">AI人脈管理</div>
+    <h1><span class="gradient-text">声と写真だけ。</span></h1>
+    <p class="hero-subtitle">名刺を撮る。会った感想を声で言う。<br>あとはAIが、整理も、分類も、フォローアップ提案も——ぜんぶやる。</p>
+    <a href="#contact" class="hero-cta">βテストに参加する（無料）</a>
+    <p class="hero-note">先着100名・無料・事前登録のみ</p>
+</section>
+
+<!-- Pain -->
+<section class="pain section">
+    <div class="container">
+        <span class="section-label">こんな経験、ありませんか？</span>
+        <h2 class="section-title">名刺交換のあと、<br><span class="gradient-text">誰もフォローできていない</span></h2>
+
+        <div class="pain-grid">
+            <div class="pain-card">
+                <div class="icon">😩</div>
+                <h3>名刺、結局フォローしてない</h3>
+                <p>展示会で50枚交換。帰社してデスクに置いた。翌週にはもう誰が誰か思い出せない。結局1人もフォローアップしなかった。</p>
+            </div>
+            <div class="pain-card">
+                <div class="icon">💸</div>
+                <h3>名刺アプリは"デジタル化"止まり</h3>
+                <p>Eightでスキャンはできた。でも、商談メモもフォローも何もない。ただの電話帳にしかならなかった。</p>
+            </div>
+            <div class="pain-card">
+                <div class="icon">🚫</div>
+                <h3>CRM導入は大企業の話</h3>
+                <p>Sansanは月額数万円。HubSpotは英語UI。個人や小規模事業者が使える"ちょうどいい"が存在しない。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Turning Point -->
+<section class="turning section">
+    <div class="container">
+        <span class="section-label">本当に欲しかったもの</span>
+        <blockquote>
+            「きれいにスキャンした」は、ゴールじゃない。<br>
+            「もう一度、<span class="gradient-text">会いたい人に会える</span>」<br>
+            ——ただ、それだけが欲しかった。
+        </blockquote>
+    </div>
+</section>
+
+<!-- Solution -->
+<section class="section">
+    <div class="container">
+        <span class="section-label">Contagとは</span>
+        <h2 class="section-title"><span class="gradient-text">声と写真だけ</span>のAI人脈管理</h2>
+        <p class="solution-intro">名刺交換の直後、スマホに向かって一言。あとはAIが名刺データと音声メモを統合して、分類・タグ付け・フォローアップ提案まで全自動。</p>
+
+        <div class="solution-grid">
+            <div class="solution-card">
+                <div class="icon">🎙️</div>
+                <h3>声で記録</h3>
+                <p>名刺交換の直後、スマホに向かって一言。「営業部の田中さん、AI導入に興味あり。来週メール送る」——これだけで記録完了。タイピング不要。</p>
+            </div>
+            <div class="solution-card highlight">
+                <div class="icon">🤖</div>
+                <h3>AIが全部整理</h3>
+                <p>名刺OCR + 音声メモを統合。AIが自動で分類・タグ付け・フォローアップ提案まで。「来週メール」と言ったら、リマインドが届く。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="section" style="background: var(--background-light);">
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-label">Contagの3つの特徴</span>
+            <h2 class="section-title">入力はゼロ。<br><span class="gradient-text">あとはAIが全部やる</span></h2>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="icon">🎙️</div>
+                <h3>声で言うだけ</h3>
+                <p>歩きながらでもOK。音声をAIがテキスト化、構造化データに自動変換。手入力は一切不要。</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon">📸</div>
+                <h3>撮るだけ</h3>
+                <p>名刺を撮影。1秒でOCR。会社名・氏名・連絡先を自動抽出。手入力ゼロ。</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon">🔔</div>
+                <h3>次を教えてくれる</h3>
+                <p>「3日後にメール」と言えば自動リマインド。フォローアップ率が激変する。もう忘れない。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Flow -->
+<section class="section">
+    <div class="container">
+        <div style="text-align: center;">
+            <span class="section-label">使い方</span>
+            <h2 class="section-title">名刺交換から<span class="gradient-text">フォローアップ</span>まで</h2>
+        </div>
+
+        <div class="flow-list">
+            <div class="flow-step">
+                <div class="num">1</div>
+                <div>
+                    <h3>名刺を撮影</h3>
+                    <p>スマホで名刺を撮るだけ。OCRが自動で名前・会社・連絡先を読み取ります。</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="num">2</div>
+                <div>
+                    <h3>声でメモ</h3>
+                    <p>「AI導入に興味あり。来週メール送る」——会った直後の温度感を、声で残す。</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="num">3</div>
+                <div>
+                    <h3>AIが分類・整理</h3>
+                    <p>名刺データと音声メモをAIが統合。タグ付け・優先度判定・カテゴリ分類を自動で。</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="num">4</div>
+                <div>
+                    <h3>フォローアップ提案</h3>
+                    <p>「田中さんに来週メール」——AIがリマインド。もうフォロー漏れは起きない。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Final -->
+<section class="cta-final" id="contact">
+    <h2><span class="gradient-text">声と写真だけ。</span></h2>
+    <p>βテスト参加者を先着100名で募集中。<br>完全無料。</p>
+    <a href="mailto:admin@launchx.jp?subject=Contag%20%CE%B2%E3%83%86%E3%82%B9%E3%83%88%E5%8F%82%E5%8A%A0%E5%B8%8C%E6%9C%9B" class="hero-cta">βテストに参加する（無料）</a>
+    <p class="hero-note" style="margin-top: 16px;">メールでのお問い合わせ: <a href="mailto:admin@launchx.jp" style="color: var(--primary);">admin@launchx.jp</a></p>
+    <p class="urgency">あの名刺の山、来月も同じままですか？<br>フォローしなかった名刺の裏に、次の大型案件があったかもしれない。</p>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; 2026 合同会社LaunchX. All rights reserved.</p>
+    <p style="margin-top: 8px;">
+        <a href="https://launchx.jp">LaunchX</a> ／
+        Contag は LaunchX LLC のサービスです
+    </p>
+</footer>
+
+</body>
+</html>
